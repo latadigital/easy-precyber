@@ -1,0 +1,21 @@
+@if map-deep-get($_CONFIG, 'utilidades', 'debug') {
+
+	/****************************
+	
+	ATENCIÓN: MODO DEBUG ACTIVADO
+	Se ha activado el modo debug para aplicar buenas practicas en el front en cuanto a usabilidad y accesibilidad
+
+	*****************************/
+
+	a:not([aria-label]):not([aria-labelledby]),
+	img:only-child:not([alt]):after,
+	.button:not(a):not(button):not(input):after,
+	.btn:not(a):not(button):not(input):after,
+	img:not([alt]):after,
+	img[alt]:not([alt=""]):after,
+	img:not([src]):after,
+	form:not([action]):after {
+		outline: 1px solid red;
+		outline-offset: 5px;
+	}
+}

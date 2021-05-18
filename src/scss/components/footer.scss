@@ -1,0 +1,194 @@
+.footer {
+  background: #fbfbfb;
+  color: #4d4d4d;
+  .container {
+    width: 100%;
+    max-width: 1350px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+  }
+  .flex-container {
+    box-sizing: border-box;
+    display: flex;
+  }
+  a {
+    text-decoration: none;
+    color: #4d4d4d;
+    font-size: 14px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__top {
+    background: hsla(0, 0%, 93.3%, 0.93);
+    @media (max-width: 699px) {
+      flex-direction: column;
+      background: #fff;
+    }
+  }
+  .huincha-fotter-icon {
+    width: 18%;
+    text-align: center;
+    color: #333;
+    margin: 1%;
+    // display: inline-flex;
+    &__img {
+      width: 40px;
+      height: auto;
+      display: inline-block;
+    }
+    &__title,
+    &__desc {
+      display: block;
+    }
+    &__desc {
+      font-size: 11px;
+    }
+    @media (max-width: 699px) {
+      &.hide,
+      &__desc {
+        display: none;
+      }
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1% 0;
+      padding: 10px;
+    }
+  }
+  &_uxlab {
+    background: #fbfbfb;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    justify-content: space-between;
+    .lado_izquierdo {
+      width: 68%;
+    }
+    .lado_derecho {
+      width: 32%;
+    }
+    @media (max-width: 699px) {
+      flex-direction: column;
+      .lado_izquierdo,
+      .lado_derecho {
+        width: 100%;
+      }
+    }
+  }
+  input#tm,
+  input#tn,
+  input#to,
+  input#fo {
+    display: none;
+    position: relative;
+  }
+  .izq {
+    width: 24%;
+    margin-right: 1%;
+    margin-bottom: calc(5% - 40px);
+    &2 {
+      align-items: flex-end;
+    }
+    &__title {
+      font-size: 16px;
+      font-weight: 700;
+      padding-bottom: 5px;
+      margin-top: 3px;
+    }
+    &__link {
+      margin-bottom: 8px;
+      display: table;
+      font-weight: 300;
+    }
+    @media (max-width: 699px) {
+      width: 100%;
+      margin: 0;
+      &1 {
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+      &2 {
+        display: none;
+      }
+      &__title {
+        position: relative;
+        margin-bottom: 8px;
+        &::after {
+          display: block;
+          position: absolute;
+          right: 5px;
+          bottom: 15px;
+          width: 10px;
+          height: 5px;
+          content: '';
+          background-image: url(https://www.easy.cl/wcsstore/EasyStorefrontAssetStore/images/responsive/rwdUI.png);
+          background-position: -263px -41px;
+          z-index: 5;
+        }
+      }
+      input[type="checkbox"]:checked {
+        ~ .hiddentext {
+          display: block;
+        }
+      }
+    }
+  }
+  .map {
+    padding-top: 3px;
+    padding-bottom: 5px;
+    width: 120px;
+    margin-right: 5%;
+  }
+  .ventatelefonica_footer {
+    &__title {
+      font-size: 16px;
+      // margin-bottom: 5px;
+    }
+    &__link {
+      display: block;
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 10px;
+      line-height: 1;
+    }
+  }
+  .redessocial_footeres_footer {
+    &__title {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+  }
+  .social_footer {
+    display: flex;
+    align-items: center;
+    &__title {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    &__item {
+      margin-right: 10px;
+    }
+  }
+  &__bottom {
+    border-top: 1px solid #d9d9d9;
+    font-size: 11px;
+    color: #777;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    @media (max-width: 699px) {
+      text-align: right;
+    }
+  }
+  .hiddentext {
+    @media (max-width: 699px) {
+      display: none;
+      padding: 10px;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+  }
+}

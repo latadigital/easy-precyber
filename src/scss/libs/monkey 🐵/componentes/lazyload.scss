@@ -1,0 +1,17 @@
+.fln-lazyLoad{
+  img{
+    display: block;
+    width: 100%;
+    transform: scale(1);
+    @include transicion;
+    .ie-browser &{
+      height: auto;
+    }
+  }
+  &.cargarImg{
+    img{
+      transform: scale(1.1);
+      filter: blur(10px);
+    }
+  }
+}

@@ -1,0 +1,83 @@
+// PX a REM
+@function rem($size: 16px) {
+  @return $size / 16px * 1rem;
+}
+
+// Negro con opacidad
+@function negro($opacity) {
+  @return rgba(black, $opacity);
+}
+
+// Blanco con opacidad
+@function blanco($opacity) {
+  @return rgba(white, $opacity);
+}
+
+@function gris($val: 50) {
+  $gris: ();
+  @for $i from 1 through 50 {
+    $gris: map-merge($gris, (#{$i * 2}: $i * 2%));
+  }
+
+  @if map-get($gris, "#{$val}") {
+    @return lighten(#000000, map-get($gris, "#{$val}"));
+  } @else {
+    @debug 'El valor ingresado no existe';
+  }
+}
+
+// Mesclar color con blanco
+@function blanquear($color, $porcentage) {
+  @return mix(white, $color, $porcentage);
+}
+
+// Mesclar color con negro
+@function ennegrecer($color, $porcentage) {
+  @return mix(black, $color, $porcentage);
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function pow($number, $exponent) {
+  $value: 1;
+  @if unitless($exponent) {
+    @if $exponent > 0 {
+      @for $i from 1 through $exponent {
+        $value: $value * $number;
+      }
+    }
+  }
+  @return $value;
+}
+
+@function luminance($color) {
+  $colors: (
+    'red': red($color),
+    'green': green($color),
+    'blue': blue($color),
+  );
+  @each $name, $value in $colors {
+    $adjusted: 0;
+    $value: $value / 255;
+    @if $value < 0.03928 {
+      $value: $value / 12.92;
+    } @else {
+      $value: ($value + 0.055) / 1.055;
+      $value: pow($value, 2);
+    }
+    $colors: map-merge(
+      $colors,
+      (
+        $name: $value,
+      )
+    );
+  }
+  @return (map-get($colors, 'red') * 0.2126)+ (
+      map-get($colors, 'green') * 0.7152
+    )+ (map-get($colors, 'blue') * 0.0722);
+}

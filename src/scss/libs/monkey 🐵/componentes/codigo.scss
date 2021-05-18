@@ -1,0 +1,48 @@
+@if map-deep-get($_CONFIG, 'componentes', 'codigo', 'activo'){
+  .code {
+    padding: rem(4px) rem(8px);
+    color: blanquear(ennegrecer($primario, 90%), 15%);
+    background: gris(96);
+    @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+      border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+    }
+    &--dark {
+      color: blanquear($primario, 85%);
+      background: blanquear(ennegrecer($primario, 90%), 15%);
+      mark {
+        color: blanquear(ennegrecer($primario, 90%), 15%);
+      }
+    }
+    &--group{
+      padding: rem(20px);
+      display: block;
+      overflow: hidden;
+      overflow-x: auto;
+    }
+    &__comment {
+      opacity: .4;
+    }
+    mark {
+      border-radius: 78% 22% 81% 19% / 30% 73% 27% 70%;
+      line-height: 1.3;
+    }
+  }
+  
+  code:not([class]) {
+    background: blanquear($secundario, 98%);
+    border: 1px solid blanquear($secundario, 80%);
+    border-radius: rem(1.5px);
+    color: $secundario;
+    font-size: rem(16px);
+    margin: 0 rem(10px);
+    padding: rem(2px) rem(4px);
+    white-space: nowrap;
+  }
+  
+  kbd {
+    padding: rem(3px) rem(5px);
+    background: negro(1);
+    color: blanco(1);
+    font-size: rem(7px);
+  }
+}

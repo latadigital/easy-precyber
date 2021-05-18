@@ -1,0 +1,308 @@
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+// Configuración de importación,
+// se debe poner true o false para cargar los archivos
+//-------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------
+
+// @import "auxiliares/functions";
+
+$unidadPrincipal: 16px;
+$gap: 15px;
+
+
+$_CONFIG: (
+
+
+  //---- UTILIDADES ----//
+  utilidades: (
+    //----- Debug a elementos que deben ser accesibles para todo tipo de usuarios (BOOLEAN)
+    debug: false
+  ),
+
+
+
+  //---- UI -----//
+  // Ajustes generales de la UI de la librería
+  ui: (
+    colores: (
+      default: #546e7a,
+      primario: #BC3037,
+      secundario: #feed00,
+      terciario: #FFF,
+      alertas: (
+        primaria: #BC3037,
+        secundaria: #feed00,
+        error: #ea5233,
+        exito: #32dba3,
+        aviso: #f7ae18,
+        info: #04a9f7,
+      ),
+      redes-sociales: (
+        facebook: #3f51b5,
+        twitter: #29b6f6,
+        linkedin: #1e88e5,
+        google: #f44336
+      ),
+      textos: (
+        titulos: #000,
+        parrafos: #000,
+        blockquote: #607d8b,
+        listas: #000,
+        bullets-listas: #BC3037,
+        inputs: #000,
+        labels: #000,
+        tablas: #000,
+      )
+    ),
+    fonts: (
+      general: 'Roboto',
+      titulos: 'Roboto'
+    ),
+    sombras: (
+      activo: true,
+      tipo: (
+        default: (
+          x: 0,
+          y: 0,
+          blur: 0,
+          spread: null, // Expancion
+          opacity: 0
+        ),
+        hover: (
+          x: 0,
+          y: 5px,
+          blur: 10px,
+          spread: null, // Expancion
+          opacity: .3
+        ),
+        active: (
+          x: 0,
+          y: 0,
+          blur: 2px,
+          spread: null, // Expancion
+          opacity: .1
+        ),
+        focus: (
+          x: 0,
+          y: 0,
+          blur: 0,
+          spread: 1px, // Expancion
+          opacity: 1
+        ),
+      )
+    ),
+    radios: (
+      activo: true,
+      valor: 4px
+    ),
+    links: (
+      activo: true,
+      tipo: (
+        underline: false,
+        overline: false,
+        fill: true,
+        scale: false
+      ),
+      direction: left
+    )
+  ),
+
+
+  //-- COMPONENTES ----//
+
+  componentes: (
+
+    //--- BOTONES
+    botones: (
+      activo: true,
+      tipo: (
+        primario: true,
+        secundario: true,
+        terciario: true
+      ),
+      generales: true,
+      borde: true,
+      link: true,
+      disableds: true,
+      acciones: (
+        activo: true,
+        tipo: (
+          peligro: true,
+          exito: true
+        ),
+      ),
+      formas: true,
+      fantasmas: true,
+      ripple: true,
+    ),
+
+    //--- BADGES
+    badges: (
+      activo: true,
+      tipo: (
+        pills: true
+      )
+    ),
+
+    //--- FORMULARIOS
+    formularios: (
+      activo: true,
+      animacion: (
+        activo: true,
+        tipo: translate
+      ),
+      elementos: (
+        text: true,
+        selects: true,
+        textarea: true,
+        seleccion: (
+          activo: true,
+          elementos: (
+            radios: true,
+            checkboxs: true,
+            toggles: true
+          )
+        ),
+        calendario: false,
+        //----- Si se requieren los componentes de menor tamaño
+        small: false
+      )
+    ),
+
+    //--- TABLAS
+    tablas: (
+      activo: true,
+      tipo: (
+        full: true,
+        small: true,
+        big: true,
+        zebra: true,
+        bordes: (
+          activo: true,
+          tipo: (
+            todo: true,
+            top: false,
+            bottom: true
+          )
+        ),
+        paginada: false,
+      )
+    ),
+
+    //--- ALERTAS
+    alertas: (
+      activo: true,
+      texto: #4c446d,
+      tipo: (
+        error: true,
+        exito: true,
+        aviso: true,
+        info: true
+      )
+    ),
+
+    //--- CALLOUTS
+    callouts: (
+      activo: true,
+      tipo: (
+        exito: true,
+        error: true,
+        aviso: true,
+        info: true
+      )
+    ),
+
+    //--- TABS
+    tabs: (
+      activo: true,
+      tipo: (
+        vertical: true,
+        responsive: true
+      )
+    ),
+
+    //--- ACCORDION
+    accordion: (
+      activo: true
+    ),
+
+    //--- PRELOADER GENERAL
+    preloader-general: (
+      activo: true
+    ),
+
+    //--- LENGUAJES ETIQUETAS (languajes badges)
+    languaje-badges: (
+      activo: true,
+      tipo: (
+        html: true,
+        js: true,
+        css: true,
+        pug: true
+      )
+    ),
+
+    //--- Principios de la librería, que se puede hacer y que no
+    principios: true,
+
+    //--- Demos de código
+    codigo: (
+      activo: true
+    ),
+
+    //--- GALERIA IMAGENES (OJO: solo funcionará si fancybox está activo)
+    galeria: (
+      
+    ),
+    //--- EXTERNOS
+    externos: (
+
+      //----- FancyBox se utiliza para las galerías y los lightboxs
+      fancybox: true,
+
+      //----- Carrusel y slider
+      owl-carousel: false,
+    )
+  ),
+
+  //---- ANIMACIONES ----//
+  // Animaciones generales del sitio, no confundir con transiciones
+  animaciones: (
+    todas: true,
+    bounce: true,
+    growIn: true,
+    shake: true,
+    shakeUp: true,
+    rotate: true,
+    wiggle: true,
+    swing: true,
+    tada: true,
+    wobble: true,
+    pulse: true,
+    active-input: true
+  ),
+
+  //---- LAYOUT -----//
+  layout: (
+    cols: (
+      total: 12,
+      gap: 16px / $unidadPrincipal * $gap,
+      breaks: (
+        sm 544 570,
+        md 768 720,
+        lg 992 940,
+        xl 1200 1280,
+        xxl 1400 1360,
+        pr
+      )
+    ),
+    medias: (
+      xs: "max-width:543px",
+      sm: "(min-width:544px) and (max-width:767px)",
+      md: "(min-width:768px) and (max-width:991px)",
+      lg: "(min-width:992px) and (max-width:1199px)",
+      pr: "print"
+    )
+  ),
+);

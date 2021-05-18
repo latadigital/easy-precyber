@@ -1,0 +1,43 @@
+.preguntas {
+  padding: rem(100px) 0;
+  &__item {
+    background: #e9e9e9;
+    border-radius: rem(30px);
+    text-align: center;
+    padding: rem(50px) rem(100px);
+    margin-bottom: rem(30px);
+    position: relative;
+    @include break(md-mw) {
+      padding: rem(70px) rem(30px) rem(30px);
+      margin-bottom: rem(60px);
+    }
+    &__n {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: rem(40px);
+      color: blanco(1);
+      width: rem(100px);
+      height: rem(100px);
+      border-radius: 50%;
+      background: $primario;
+      @include posicion(absolute,50%,null,null,rem(-50px));
+      transform: translateY(-50%);
+      @include break(md-mw) {
+        left: 50%;
+        top: rem(-40px);
+        transform: translateX(-50%);
+        width: rem(80px);
+        height: rem(80px);
+      }
+    }
+    &__title {
+      font-size: rem(30px);
+      margin-top: 0;
+    }
+    &__desc {
+      font-size: rem(18px);
+      font-weight: 300;
+    }
+  }
+}

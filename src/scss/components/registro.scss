@@ -1,0 +1,33 @@
+.registro {
+  background: $primario url('//www.easy.cl/minisitios/cyber-nov2018/cyber-fondo.png') center center fixed;
+  min-height: 540px;
+  display: flex;
+  align-items: center;
+  padding: rem(50px) 0;
+  .container {
+    width: 100%;
+  }
+  &__content {
+    @include break(lg-mw) {
+      margin-bottom: rem(50px);
+    }
+  }
+  &__title,
+  &__desc {
+    color: blanco(1);
+  }
+  &__title {
+    margin-top: 0;
+    font-weight: 600;
+  }
+  &__desc {
+    margin-bottom: rem(40px);
+  }
+  &__form {
+    padding: 0 rem(100px);
+    margin-bottom: 0;
+    @include break(xl-mw) {
+      padding: 0;
+    }
+  }
+}

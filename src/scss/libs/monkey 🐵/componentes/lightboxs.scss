@@ -1,0 +1,31 @@
+@if $magnific-popup==true {
+	.mp {
+		&__item {
+			padding: 40px;
+			background: $blanco;
+			box-shadow: 0 5px 10px rgba($negro, .3);
+			position: relative;
+			margin: 15px auto;
+			width: 100%;
+			&--small {
+				max-width: 400px;
+			}
+			&--medium {
+				max-width: 600px;
+			}
+			&--large {
+				max-width: 800px;
+			}
+			&--x-large {
+				max-width: 1000px;
+			}
+		}
+		&__footer {
+			padding: 20px;
+			border-top: 1px solid $grisE;
+		}
+		&--modal {
+			max-width: 500px;
+		}
+	}
+}

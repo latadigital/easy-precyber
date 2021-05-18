@@ -1,0 +1,122 @@
+//** Configuración General **//
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  @media print {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: $font-general, sans-serif;
+}
+
+.separador {
+  height: rem(30px);
+  &--ultra {
+    height: rem(160px);
+  }
+  &--big {
+    height: rem(60px);
+  }
+  &--small {
+    height: rem(15px);
+  }
+}
+
+.content {
+  img {
+    max-width: 100%;
+    margin-bottom: rem(30px);
+  }
+}
+
+::selection {
+  background: $secundario;
+  @if (luminance($secundario) > 0.5) {
+    color: negro(1);
+  } @else {
+    color: blanco(1);
+  }
+}
+
+$colores-utiles: (
+  primario: $primario,
+  primario100: $primario100,
+  primario200: $primario200,
+  primario300: $primario300,
+  primario400: $primario400,
+  primario500: $primario500,
+  primario600: $primario600,
+  primario700: $primario700,
+  primario800: $primario800,
+  primario900: $primario900,
+  secundario: $secundario,
+  secundario100: $secundario100,
+  secundario200: $secundario200,
+  secundario300: $secundario300,
+  secundario400: $secundario400,
+  secundario500: $secundario500,
+  secundario600: $secundario600,
+  secundario700: $secundario700,
+  secundario800: $secundario800,
+  secundario900: $secundario900,
+  terciario: $terciario,
+  terciario100: $terciario100,
+  terciario200: $terciario200,
+  terciario300: $terciario300,
+  terciario400: $terciario400,
+  terciario500: $terciario500,
+  terciario600: $terciario600,
+  terciario700: $terciario700,
+  terciario800: $terciario800,
+  terciario900: $terciario900,
+  blanco: blanco(1),
+  negro: negro(1),
+  negro33: #333333,
+  gris90: gris(90),
+  gris80: gris(80),
+  gris70: gris(70),
+  gris60: gris(60),
+  gris50: gris(50),
+  aviso: $aviso,
+  error: $error,
+  exito: $exito,
+  info: $info,
+  transparente: transparent,
+);
+
+.color {
+  @each $color, $var in $colores-utiles {
+    &--#{$color} {
+      color: #{$var};
+    }
+  }
+}
+
+.bg {
+  @each $color, $var in $colores-utiles {
+    &--#{$color} {
+      background-color: $var;
+    }
+  }
+}
+
+.svg {
+  @each $color, $var in $colores-utiles {
+    &--#{$color} {
+      fill: $var;
+    }
+  }
+}

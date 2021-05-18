@@ -1,0 +1,65 @@
+@if map-deep-get($_CONFIG, 'componentes', 'accordion', 'activo'){
+  .fln-accordion {
+    margin-bottom: 40px;
+    &__header{
+      font-size: 2rem;
+      padding: 20px;
+      color: $primario;
+      background: getColor('gris', 'F8');
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse;
+      cursor: pointer;
+      margin-bottom: 1px;
+      @include transicion;
+      @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+        border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+      }
+      @if map-deep-get($_CONFIG, 'ui', 'sombras', 'activo') {
+        box-shadow:
+        map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'y')
+        map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'x')
+        map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'blur')
+        map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'spread')
+        rgba($default, map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'opacity'));
+      }
+      &:hover{
+        @if map-deep-get($_CONFIG, 'ui', 'sombras', 'activo') {
+          box-shadow:
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'y')
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'x')
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'blur')
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'spread')
+          rgba($default, map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'opacity'));
+        }
+      }
+      &.ui-state-active {
+        background: $primario;
+        $color: '';
+        @if (luminance($primario) >=0.5) {
+            $color: negro(1);
+        } @else {
+          $color: blanco(1);
+        }
+        color: $color;
+      }
+      &:focus {
+        outline: 0;
+      }
+    }
+    &__icon {
+      line-height: .75;
+      @include transicion;
+      &:before {
+        line-height: 1;
+      }
+      .ui-state-active & {
+        transform: rotate(180deg);
+      }
+    }
+    &__body{
+      padding: 30px 0;
+    }
+  }
+}

@@ -1,0 +1,332 @@
+// Alineaciones de elementos flexbox
+.justify-start-xs {
+  justify-content: flex-start;
+}
+
+.justify-center-xs {
+  justify-content: center;
+}
+
+.justify-end-xs {
+  justify-content: flex-end;
+}
+
+.justify-around-xs {
+  justify-content: space-around;
+}
+
+.justify-between-xs {
+  justify-content: space-between;
+}
+
+.align-top-xs {
+  align-items: flex-start;
+}
+
+.align-middle-xs {
+  align-items: center;
+}
+
+.align-bottom-xs {
+  align-items: flex-end;
+}
+.align-stretch-xs {
+  align-items: stretch;
+}
+
+.direction-row-xs {
+  flex-direction: row;
+}
+
+.direction-row-reverse-xs {
+  flex-direction: row-reverse;
+}
+
+.direction-column-xs {
+  flex-direction: column;
+}
+
+.direction-column-reverse-xs {
+  flex-direction: column-reverse;
+}
+
+@for $i from 1 through 12 {
+  .first-xs-#{$i} {
+    order: -#{$i};
+  }
+}
+
+@for $i from 1 through 12 {
+  .last-xs-#{$i} {
+    order: #{$i};
+  }
+}
+
+.wrap-xs {
+  flex-wrap: wrap;
+}
+
+.nowrap-xs {
+  flex-wrap: nowrap;
+}
+
+@each $slug,
+$w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      .justify-start-#{$slug} {
+        justify-content: flex-start;
+      }
+  
+      .justify-center-#{$slug} {
+        justify-content: center;
+      }
+  
+      .justify-end-#{$slug} {
+        justify-content: flex-end;
+      }
+  
+      .justify-around-#{$slug} {
+        justify-content: space-around;
+      }
+  
+      .justify-between-#{$slug} {
+        justify-content: space-between;
+      }
+
+      .align-top-#{$slug} {
+        align-items: flex-start;
+      }
+
+      .align-middle-#{$slug} {
+        align-items: center;
+      }
+
+      .align-bottom-#{$slug} {
+        align-items: flex-end;
+      }
+      .align-stretch-#{$slug} {
+        align-items: stretch;
+      }
+
+      @for $i from 1 through 12 {
+        .first-#{$slug}-#{$i} {
+          order: -#{$i};
+        }
+      }
+      @for $i from 1 through 12 {
+        .last-#{$slug}-#{$i} {
+          order: #{$i};
+        }
+      }
+  
+      .direction-row-#{$slug} {
+        flex-direction: row;
+      }
+  
+      .direction-row-reverse-#{$slug} {
+        flex-direction: row-reverse;
+      }
+  
+      .direction-column-#{$slug} {
+        flex-direction: column;
+      }
+  
+      .direction-column-reverse-#{$slug} {
+        flex-direction: column-reverse;
+      }
+  
+      .wrap-#{$slug} {
+        flex-wrap: wrap;
+      }
+  
+      .nowrap-#{$slug} {
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+
+// Alineación elementos interiores de columnas
+$alineacion-h: right,
+left,
+center;
+$alineacion-v: top,
+bottom,
+middle;
+
+@each $d in $alineacion-h {
+  @for $i from 1 through 1 {
+    .text-align-#{$d}-xs {
+      text-align: $d;
+    }
+  }
+}
+
+@each $d in $alineacion-v {
+  @for $i from 1 through 1 {
+    .text-align-#{$d}-xs {
+      vertical-align: $d;
+    }
+  }
+}
+
+@media print {
+  @each $d in $alineacion-h {
+    @for $i from 1 through 1 {
+      .text-align-#{$d}-pr {
+        text-align: $d;
+      }
+    }
+  }
+  
+  @each $d in $alineacion-v {
+    @for $i from 1 through 1 {
+      .text-align-#{$d}-pr {
+        vertical-align: $d;
+      }
+    }
+  }
+}
+
+@each $slug,
+$w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      @each $dd in $alineacion-v {
+        @for $i from 1 through 1 {
+          .text-align-#{$dd}-#{$slug} {
+            vertical-align: $dd;
+          }
+        }
+      }
+  
+      @each $dd in $alineacion-h {
+        @for $i from 1 through 1 {
+          .text-align-#{$dd}-#{$slug} {
+            text-align: $dd;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Orientación de flexbox
+.right-auto-xs {
+  margin-right: auto;
+}
+
+.left-auto-xs {
+  margin-left: auto;
+}
+
+@each $slug,
+$w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      .right-auto-#{$slug} {
+        margin-right: auto;
+      }
+  
+      .left-auto-#{$slug} {
+        margin-left: auto;
+      }
+    }
+  }
+  
+}
+
+// Ocultar/Mostrar
+.oculto-xs {
+  display: none;
+}
+
+.block-xs {
+  display: block;
+}
+
+.inline-block-xs {
+  display: inline-block;
+}
+
+.inline-xs {
+  display: inline;
+}
+
+.flex-xs {
+  display: flex;
+}
+
+.inline-flex-xs {
+  display: inline-flex;
+}
+
+.table-xs {
+  display: table;
+}
+
+@each $slug,
+$w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      .oculto-#{$slug} {
+        display: none;
+      }
+  
+      .block-#{$slug} {
+        display: block;
+      }
+  
+      .inline-block-#{$slug} {
+        display: inline-block;
+      }
+  
+      .inline-#{$slug} {
+        display: inline;
+      }
+  
+      .flex-#{$slug} {
+        display: flex;
+      }
+  
+      .inline-flex-#{$slug} {
+        display: inline-flex;
+      }
+  
+      .table-#{$slug} {
+        display: table;
+      }
+    }
+  }
+}
+
+@media print {
+  .oculto-pr {
+    display: none;
+  }
+  
+  .block-pr {
+    display: block;
+  }
+  
+  .inline-block-pr {
+    display: inline-block;
+  }
+  
+  .inline-pr {
+    display: inline;
+  }
+  
+  .flex-pr {
+    display: flex;
+  }
+  
+  .inline-flex-pr {
+    display: inline-flex;
+  }
+  
+  .table-pr {
+    display: table;
+  }
+}

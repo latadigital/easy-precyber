@@ -1,0 +1,63 @@
+@if map-deep-get($_CONFIG, 'componentes', 'languaje-badges', 'activo') {
+  [data-language-badge]{
+    display: inline-block;
+    padding: 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+      border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+    }
+  }
+  
+  
+  $html: (
+    texto: blanco(1),
+    fondo:linear-gradient(to right top, #cf125c, #dd2750, #e73b43, #ee5035, #f16524)
+  );
+  $js: (
+    texto: negro(1),
+    fondo:linear-gradient(to left bottom, #f8dc3d, #efc632, #e5b129, #da9c22, #cd881c)
+  );
+  $css: (
+    texto: blanco(1),
+    fondo:linear-gradient(to right top, #0901b9, #0046d4, #006ae0, #008ae1, #01a7dd)
+  );
+  $pug: (
+    texto: #705b58,
+    fondo:linear-gradient(45deg, #c9c9c9 0%, #ffecec 100%)
+  );
+
+  $languaje-badges: ();
+  
+  @if map-deep-get($_CONFIG, 'componentes', 'languaje-badges', 'tipo') {
+    @if map-deep-get($_CONFIG, 'componentes', 'languaje-badges', 'tipo', 'html') {
+      $_html: ('html': $html);
+      $languaje-badges: map-merge($languaje-badges, $_html);
+    }
+    @if map-deep-get($_CONFIG, 'componentes', 'languaje-badges', 'tipo', 'js') {
+      $_js: ('js': $js);
+      $languaje-badges: map-merge($languaje-badges, $_js);
+    }
+    @if map-deep-get($_CONFIG, 'componentes', 'languaje-badges', 'tipo', 'css') {
+      $_css: ('css': $css);
+      $languaje-badges: map-merge($languaje-badges, $_css);
+    }
+    @if map-deep-get($_CONFIG, 'componentes', 'languaje-badges', 'tipo', 'pug') {
+      $_pug: ('pug': $pug);
+      $languaje-badges: map-merge($languaje-badges, $_pug);
+    }
+  }
+
+  
+  
+  
+  @each $lang, $values in $languaje-badges {
+    [data-language-badge="#{$lang}"] {
+      color: map-deep-get($languaje-badges, $lang, 'texto');
+      background-image: map-deep-get($languaje-badges, $lang, 'fondo');
+    }
+  }
+
+}
+

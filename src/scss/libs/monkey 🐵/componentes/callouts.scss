@@ -1,0 +1,58 @@
+@if map-deep-get($_CONFIG, 'componentes', 'callouts', 'activo') {
+
+  $callouts: ();
+
+	@if map-deep-get($_CONFIG, 'componentes', 'callouts', 'tipo') {
+		@if map-deep-get($_CONFIG, 'componentes', 'callouts', 'tipo', 'exito') {
+			$_exito: ('exito': $exito);
+			$callouts: map-merge($callouts, $_exito);
+		}
+		@if map-deep-get($_CONFIG, 'componentes', 'callouts', 'tipo', 'error') {
+			$_error: ('error': $error);
+			$callouts: map-merge($callouts, $_error);
+		}
+		@if map-deep-get($_CONFIG, 'componentes', 'callouts', 'tipo', 'aviso') {
+			$_aviso: ('aviso': $aviso);
+			$callouts: map-merge($callouts, $_aviso);
+		}
+		@if map-deep-get($_CONFIG, 'componentes', 'callouts', 'tipo', 'info') {
+			$_info: ('info': $info);
+			$callouts: map-merge($callouts, $_info);
+		}
+	}
+
+  .callout {
+    padding: 2rem;
+    padding-left: 2.6rem;
+    border: 1px solid gris(92);
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+    &:before {
+      content: '';
+      display: block;
+      height: 110%;
+      width: .6rem;
+      @include posicion(absolute,-5%,null,-5%,0);
+    }
+  
+    @each $call,
+    $color in $callouts {
+      $luz: '';
+  
+      &--#{$call} {
+        &:before {
+          background-image: linear-gradient(to right top, adjust-hue($color, -10%), $color, adjust-hue($color,10%));
+        };
+      }
+    }
+  
+    > :first-child {
+      margin-top: 0;
+    }
+  
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }  
+}

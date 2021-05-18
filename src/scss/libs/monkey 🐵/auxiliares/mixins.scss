@@ -1,0 +1,34 @@
+@mixin estado-btn($bg, $bc) {
+  background: $bg;
+  border-color: $bc;
+}
+// @mixin alerta($color, $high-color) {
+// 	@if ($high-color) {
+//   	background: rgba(ennegrecer($color, 30%), .85);
+//   } @else {
+//   	background: rgba(blanquear($color, 85%), .85);
+//   }
+// }
+
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
+}
+
+@mixin transicion($el: all, $tipo: ease, $tiempo: 200ms) {
+  transition: $el $tipo $tiempo;
+}
+
+@mixin posicion($p: absolute, $t: 0, $r: 0, $b: 0, $l: 0) {
+  position: $p;
+  top: $t;
+  right: $r;
+  bottom: $b;
+  left: $l;
+}
+
+@mixin hover($tipo: fine) {
+  @if ($tipo == 'touch') {$tipo: coarse}
+  @media (pointer: $tipo) {
+    @content;
+  }
+}

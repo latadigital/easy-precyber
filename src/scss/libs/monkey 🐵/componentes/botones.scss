@@ -1,0 +1,543 @@
+// @if map-get($_CONFIG, 'componentes', 'botones') {
+$_OPTIONS: (
+  tipo: (
+    primario: true,
+    secundario: true,
+    terciario: true,
+  ),
+  generales: true,
+  borde: true,
+  link: true,
+  disableds: true,
+  formas: true,
+  fantasmas: true,
+  acciones: (
+    activo: true,
+    tipo: (
+      peligro: true,
+      exito: true,
+    ),
+  ),
+  efectos: (
+    sombra: true,
+    ripple: true,
+    gradient: true,
+  ),
+);
+
+/* Botones */
+%btn {
+  @include transicion;
+  background: $default;
+  color: blanco(1);
+  border: 1px solid $default;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: rem(16px);
+  font-weight: normal;
+  // line-height: 1;
+  padding: rem(12px) rem(20px);
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  border-radius: 4px;
+  @if map-get($_OPTIONS, "efectos", "sombra") {
+    box-shadow: 0 0 0 rgba($default, 0);
+  }
+  &[disabled],
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+    outline: 0;
+  }
+  &:after {
+    display: none;
+  }
+  &:focus {
+    outline: 0;
+    &[disabled],
+    &.disabled {
+      box-shadow: none;
+    }
+  }
+  @media (max-width: rem(543px)) {
+    padding: rem(12px) rem(20px);
+  }
+  input {
+    @include posicion(fixed, -rem(2000px), -rem(2000px), null, null);
+  }
+}
+
+$btns: ();
+
+@if map-get($_OPTIONS, "tipo") {
+  @if map-get($_OPTIONS, "tipo", "primario") {
+    $_primario: (
+      "primario": $primario,
+    );
+    $btns: map-merge($btns, $_primario);
+  }
+  @if map-get($_OPTIONS, "tipo", "secundario") {
+    $_secundario: (
+      "secundario": $secundario,
+    );
+    $btns: map-merge($btns, $_secundario);
+  }
+  @if map-get($_OPTIONS, "tipo", "terciario") {
+    $_terciario: (
+      "terciario": $terciario,
+    );
+    $btns: map-merge($btns, $_terciario);
+  }
+}
+@if map-get($_OPTIONS, "acciones", "activo") {
+  @if map-get($_OPTIONS, "acciones", "tipo", "peligro") {
+    $_peligro: (
+      "peligro": $error,
+    );
+    $btns: map-merge($btns, $_peligro);
+  }
+  @if map-get($_OPTIONS, "acciones", "tipo", "exito") {
+    $_exito: (
+      "exito": $exito,
+    );
+    $btns: map-merge($btns, $_exito);
+  }
+}
+
+.btn {
+  $b: btn;
+  @extend %btn;
+  @include hover {
+    &:hover {
+      @include estado-btn(blanquear($default, 10%), blanquear($default, 10%));
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: 0 5px 10px rgba($default, 0);
+      } @else {
+        transform: translateY(rem(2px)) scaleX(0.95);
+      }
+      .no-csstransforms & {
+        text-decoration: none;
+      }
+    }
+  }
+  &:focus {
+    @include estado-btn(blanquear($default, 5%), blanquear($default, 5%));
+    @if map-get($_OPTIONS, "efectos", "sombra") {
+      box-shadow: 0 0 0 2px rgba($default, 1);
+    } @else {
+      transform: translateY(rem(2px)) scaleX(1);
+    }
+    // border: 1px dashed ennegrecer($default, 30%);
+  }
+  &:active,
+  &:visited {
+    @include estado-btn(ennegrecer($default, 10%), ennegrecer($default, 10%));
+    @if map-get($_OPTIONS, "efectos", "sombra") {
+      box-shadow: 0 0 2px rgba($default, 0.1);
+    } @else {
+      transform: translateY(rem(2px)) scaleX(0.95) scaleY(0.9);
+    }
+  }
+  &[disabled],
+  .disabled {
+    &:hover {
+      @include estado-btn($default, $default);
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: none;
+      }
+    }
+  }
+  &__ripple {
+    position: absolute;
+    display: block;
+    width: rem(20px);
+    height: rem(20px);
+    border-radius: 50%;
+    background: rgba(blanquear($default, 50%), 0.4);
+    animation: ripple 0.5s 1;
+    pointer-events: none;
+    opacity: 0;
+  }
+  &--fantasma {
+    @include estado-btn(blanco(0.05), transparent);
+    @if map-get($_OPTIONS, "efectos", "sombra") {
+      box-shadow: none;
+    }
+    @include hover {
+      &:hover {
+        @include estado-btn(rgba(blanco(1), 0.1), transparent);
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          box-shadow: none;
+        }
+      }
+    }
+    &:focus {
+      background: rgba(blanco(1), 0.1);
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: 0 0 2px rgba(blanco(1), 0.1);
+      }
+    }
+    &:active,
+    &:visited {
+      @include estado-btn(rgba(blanco(1), 0.15), transparent);
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: none;
+      }
+    }
+  } // Boton borde
+  &--borde {
+    @include estado-btn(transparent, null);
+    color: $default;
+    @include hover {
+      &:hover {
+        background: rgba($default, 0.05);
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          box-shadow: none;
+        }
+      }
+    }
+    &:focus {
+      background: transparent;
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: 0 0 0 1px rgba($default, 1);
+      }
+    }
+    &:active,
+    &:visited {
+      //@include estado-btn(ennegrecer($default, 10%), ennegrecer($default, 10%));
+      background: rgba($default, 0.15);
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: 0 0 2px rgba($default, 1);
+      }
+    }
+  }
+  &--link {
+    color: $default;
+    background: transparent;
+    border-color: transparent;
+    @include hover {
+      &:hover {
+        background: rgba($default, 0.05);
+        border-color: transparent;
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          box-shadow: none;
+        }
+        .no-rgba & {
+          text-decoration: underline;
+          background: transparent;
+        }
+      }
+    }
+    &:focus {
+      background: rgba($default, 0.05);
+      border-color: transparent;
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: 0 0 0 1px rgba($default, 1);
+      }
+    }
+    &:active,
+    &:visited {
+      background: rgba(gris(70), 0.1);
+      border-color: transparent;
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: none;
+      }
+    }
+  }
+
+  @each $btn, $var in $btns {
+    &--#{$btn} {
+      @include estado-btn($var, $var);
+      @if (luminance($var) > 0.5) {
+        color: negro(1);
+      } @else {
+        color: blanco(1);
+      }
+      outline-color: transparent;
+      @if map-get($_OPTIONS, "efectos", "sombra") {
+        box-shadow: 0 0 0 rgba($var, 0);
+      }
+      // @if map-get($_OPTIONS, 'efectos', 'sombra') {
+      //   box-shadow: map-get(
+      //       $_CONFIG,
+      //       'ui',
+      //       'sombra',
+      //       'tipo',
+      //       'default',
+      //       'x'
+      //     )
+      //     map-get($_CONFIG, 'ui', 'sombra', 'tipo', 'default', 'y')
+      //     map-get($_CONFIG, 'ui', 'sombra', 'tipo', 'default', 'blur')
+      //     map-get($_CONFIG, 'ui', 'sombra', 'tipo', 'default', 'spread')
+      //     rgba(
+      //       $var,
+      //       map-get(
+      //         $_CONFIG,
+      //         'ui',
+      //         'sombra',
+      //         'tipo',
+      //         'default',
+      //         'opacity'
+      //       )
+      //     );
+      // }
+      @include hover {
+        &:hover {
+          @include estado-btn(blanquear($var, 10%), blanquear($var, 10%));
+          @if map-get($_OPTIONS, "efectos", "sombra") {
+            box-shadow: 0 5px 10px rgba($var, 0.3);
+          }
+        }
+      }
+      &:focus {
+        @include estado-btn(blanquear($var, 5%), blanquear($var, 5%));
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          box-shadow: 0 0 0 1px rgba($var, 1);
+        }
+      }
+      &:active,
+      &:visited {
+        @include estado-btn(ennegrecer($var, 10%), ennegrecer($var, 10%));
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          box-shadow: 0 0 2px rgba($var, 0.1);
+        }
+      }
+      &[disabled],
+      .disabled {
+        &:hover {
+          @include estado-btn($var, $var);
+          box-shadow: none;
+        }
+      }
+      .btn__ripple {
+        background: rgba(blanquear($var, 50%), 0.4);
+      }
+      &.btn--borde {
+        color: $var;
+        @include estado-btn(transparent, null);
+        @include hover {
+          &:hover {
+            // @if(luminance($var) > 0.5) {
+            // 	color: negro(1);
+            // } @else {
+            // 	color: blanco(1);
+            // }
+            background: rgba($var, 0.05);
+            @if map-get($_OPTIONS, "efectos", "sombra") {
+              box-shadow: none;
+            }
+            //@include estado-btn(blanquear($var, 10%), null);
+          }
+        }
+        &:focus {
+          @if map-get($_OPTIONS, "efectos", "sombra") {
+            box-shadow: 0 0 0 1px rgba($var, 1);
+          }
+        }
+        &:active,
+        &:visited {
+          // background: ennegrecer($var, 10%);
+          // border-color: ennegrecer($var, 10%);
+          // box-shadow: 0 2px 5px rgba($var, .3);
+          background: rgba($var, 0.15);
+          @if map-get($_OPTIONS, "efectos", "sombra") {
+            box-shadow: 0 0 2px rgba($var, 0.1);
+          }
+        }
+      }
+      &.btn--link {
+        color: $var;
+        background: transparent;
+        border: transparent;
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          box-shadow: none;
+        }
+        @include hover {
+          &:hover {
+            background: rgba($var, 0.05);
+            @if map-get($_OPTIONS, "efectos", "sombra") {
+              box-shadow: none;
+            }
+            .no-rgba & {
+              text-decoration: underline;
+              background: transparent;
+            }
+          }
+        }
+        &:focus {
+          background: rgba($var, 0.05);
+          @if map-get($_OPTIONS, "efectos", "sombra") {
+            box-shadow: 0 0 0 1px rgba($var, 1);
+          }
+        }
+        &:active,
+        &:visited {
+          background: rgba($var, 0.1);
+        }
+      }
+      &.btn--invertido {
+        color: $var;
+        @if (luminance($var) > 0.4) {
+          background: $secundario;
+          border-color: $secundario;
+        } @else {
+          background: blanco(1);
+          border-color: blanco(1);
+        }
+        outline-color: transparent;
+        @if map-get($_OPTIONS, "efectos", "sombra") {
+          @if (luminance($var) > 0.5) {
+            box-shadow: 0 0 0 rgba(negro(1), 0);
+          } @else {
+            box-shadow: 0 0 0 rgba(blanco(1), 0);
+          }
+        }
+        &:hover {
+          @if (luminance($var) > 0.4) {
+            background: lighten($secundario, 5%);
+            border-color: lighten($secundario, 5%);
+          } @else {
+            background: darken(blanco(1), 5%);
+            border-color: darken(blanco(1), 5%);
+          }
+          box-shadow: 0 5px 10px rgba($var, 0.3);
+        }
+      }
+    }
+  }
+  // Boton redondo
+  &--redondo {
+    border-radius: 30px;
+    &:focus {
+      border-style: dashed;
+    }
+  }
+  // Boton circulo
+  &--circulo {
+    width: rem(50px);
+    height: rem(50px);
+    max-width: rem(50px);
+    border-radius: 50%;
+    text-align: center;
+    padding: 0;
+    &:before {
+      font-size: rem(20px);
+    }
+    &:focus {
+      border-style: dashed;
+    }
+  }
+  // Boton con icono
+  &--icono {
+    &:before,
+    svg {
+      // margin: 0 rem(5px);
+      font-size: rem(20px);
+      // line-height: 0.75;
+    }
+  }
+  &--icono-izq {
+    svg {
+      margin-right: rem(10px);
+    }
+  }
+  &--icono-izq {
+    svg {
+      margin-left: rem(10px);
+    }
+  }
+  // Boton block
+  &--block-xs {
+    width: 100%;
+  } // Boton ancho auto
+  &--inline-xs {
+    width: auto;
+  } // Boton big
+  &--ancho {
+    // padding: rem(12px) rem(50px);
+    &::before,
+    &::after {
+      content: "";
+      width: 5px;
+      display: block;
+      margin: 0;
+      @include break(sm-mw) {
+        display: none;
+      }
+    }
+  }
+  &--big {
+    padding: rem(18px) rem(36px);
+  } // Boton small
+  &--small {
+    padding: rem(8px) rem(20px);
+  } // Boton x-small
+  &--xsmall {
+    padding: rem(5px) rem(15px);
+    font-size: rem(14px);
+  } // Boton ancho
+  .no-mediaqueries & {
+    &--block {
+      width: 100%;
+    }
+    &--inline {
+      width: auto;
+    }
+  }
+  &__grupo {
+    .btn {
+      margin-bottom: 1em;
+      margin-right: 0.5em;
+      &:last-child {
+        margin-right: 0;
+      }
+      @media (min-width: rem(1200px)) {
+        &--block-lg {
+          margin-right: 0;
+        }
+      }
+      @each $slug, $tamanos in map-get($_CONFIG, "layout", "medias") {
+        // @debug map-get($_CONFIG, 'layout', 'medias');
+        @media (#{$tamanos}) {
+          &--block-#{$slug} {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+@each $slug, $w, $mw in map-get($_CONFIG, "layout", "cols", "breaks") {
+  @media (min-width: #{$w}px) {
+    .btn--block-#{$slug} {
+      width: 100%;
+    }
+    .btn--inline-#{$slug} {
+      width: auto;
+    }
+  }
+}
+// }
+
+@keyframes ripple {
+  0% {
+    opacity: 0;
+  }
+  1% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(10);
+  }
+}

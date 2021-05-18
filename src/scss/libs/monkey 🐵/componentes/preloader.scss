@@ -1,0 +1,169 @@
+@if map-deep-get($_CONFIG, 'componentes', 'preloader-general', 'activo') {
+  .preloader-general {
+    z-index: 120;
+  
+    &[data-tipo=screen] {
+      @include posicion(fixed, 0, 0, 0, 0);
+      background: rgba($primario, .7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      &::after {
+        content: '';
+        display: block;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        border: 10px solid rgba(blanco(1), .2);
+        border-bottom-color: #{blanco(1)};
+        animation: rotar 400ms linear infinite;
+      }
+      &[data-content=logo] {
+        &::after {
+          display: none;
+        }
+        img {
+          max-width: 60vw;
+        }
+      }
+    }
+  
+    &[data-tipo=progress] {
+      @include posicion(fixed, null, 0, null, 0);
+  
+      &[data-posicion=top] {
+        top: 0;
+      }
+  
+      &[data-posicion=bottom] {
+        bottom: 0;
+      }
+  
+      height: 10px;
+      background: gris(94);
+  
+      &::before,
+      &::after {
+        content: '';
+        display: block;
+        width: 200px;
+        height: 100%;
+        background: $primario;
+        animation: progress linear 2s infinite;
+  
+        @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+          border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+        }
+      }
+  
+      &::before {
+        @include posicion(absolute, 0, 0, 0, null);
+      }
+  
+      &::after {
+        @include posicion(absolute, 0, null, 0, -200px);
+      }
+    }
+  
+    &[data-tipo=pill] {
+      @include posicion(fixed, null, 0, null, 0);
+      width: 200px;
+      margin: auto;
+      background: gris(94);
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 50px;
+  
+      &[data-posicion=top] {
+        top: 20px;
+      }
+  
+      &[data-posicion=bottom] {
+        bottom: 20px;
+      }
+  
+      &::before {
+        content: '';
+        display: block;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 6px solid rgba($primario, .2);
+        border-bottom-color: #{$primario};
+        animation: rotar 400ms linear infinite;
+      }
+  
+      &::after {
+        content: 'Cargando...';
+        font-size: 1.4rem;
+        color: $primario;
+        margin-left: 20px;
+      }
+    }
+  
+    &[data-tipo=bounding] {
+      @include posicion(fixed, null, 0, 0, 0);
+      width: 70px;
+      height: 35px;
+      overflow: hidden;
+      margin: auto;
+  
+      &::before {
+        content: '';
+        display: block;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 10px solid transparent;
+        border-bottom-color: #{$primario};
+        animation: bounce 3s ease-in-out infinite;
+        transform: rotate(60deg);
+      }
+    }
+  }
+  
+  @keyframes progress {
+    from {
+      transform: translateX(0);
+    }
+  
+    to {
+      transform: translateX(100vw);
+    }
+  }
+  
+  @keyframes rotar {
+    from {
+      transform: rotate(0);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes bounce {
+    0% {
+      border-width: 10px;
+    }
+  
+    25% {
+      border-width: 3px;
+    }
+  
+    50% {
+      transform: rotate(300deg);
+      border-width: 10px;
+    }
+  
+    75% {
+      border-width: 3px;
+    }
+  
+    100% {
+      border-width: 10px;
+    }
+  }
+}

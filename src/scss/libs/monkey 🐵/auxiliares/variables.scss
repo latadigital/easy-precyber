@@ -1,0 +1,61 @@
+// TIPOGRAFIAS
+
+//-- Fonts
+$font-titulos: map-deep-get($_CONFIG, 'ui', 'fonts', 'titulos');
+$font-general: map-deep-get($_CONFIG, 'ui', 'fonts', 'general');
+
+
+// COLORES
+//-- Colores paleta principal
+$default : map-deep-get($_CONFIG, 'ui', 'colores', 'default');
+$primario : map-deep-get($_CONFIG, 'ui', 'colores', 'primario');
+$secundario : map-deep-get($_CONFIG, 'ui', 'colores', 'secundario');
+$terciario : map-deep-get($_CONFIG, 'ui', 'colores', 'terciario');
+
+//-- Gama de colores
+$default100 : darken($default, 20%);
+$default200 : darken($default, 15%);
+$default300 : darken($default, 10%);
+$default400 : darken($default, 5%);
+$default500 : $default;
+$default600 : lighten($default, 5%);
+$default700 : lighten($default, 10%);
+$default800 : lighten($default, 15%);
+$default900 : lighten($default, 20%);
+$primario100 : darken($primario, 20%);
+$primario200 : darken($primario, 15%);
+$primario300 : darken($primario, 10%);
+$primario400 : darken($primario, 5%);
+$primario500 : $primario;
+$primario600 : lighten($primario, 5%);
+$primario700 : lighten($primario, 10%);
+$primario800 : lighten($primario, 15%);
+$primario900 : lighten($primario, 20%);
+$secundario100 : darken($secundario, 20%);
+$secundario200 : darken($secundario, 15%);
+$secundario300 : darken($secundario, 10%);
+$secundario400 : darken($secundario, 5%);
+$secundario500 : $secundario;
+$secundario600 : lighten($secundario, 5%);
+$secundario700 : lighten($secundario, 10%);
+$secundario800 : lighten($secundario, 15%);
+$secundario900 : lighten($secundario, 20%);
+$terciario100 : darken($terciario, 20%);
+$terciario200 : darken($terciario, 15%);
+$terciario300 : darken($terciario, 10%);
+$terciario400 : darken($terciario, 5%);
+$terciario500 : $terciario;
+$terciario600 : lighten($terciario, 5%);
+$terciario700 : lighten($terciario, 10%);
+$terciario800 : lighten($terciario, 15%);
+$terciario900 : lighten($terciario, 20%);
+
+
+//-- Colores generales
+$color-parrafos: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'parrafos');
+
+//-- Alertas
+$error: map-deep-get($_CONFIG, 'ui', 'colores', 'alertas', 'error');
+$exito: map-deep-get($_CONFIG, 'ui', 'colores', 'alertas', 'exito');
+$aviso: map-deep-get($_CONFIG, 'ui', 'colores', 'alertas', 'aviso');
+$info: map-deep-get($_CONFIG, 'ui', 'colores', 'alertas', 'info');

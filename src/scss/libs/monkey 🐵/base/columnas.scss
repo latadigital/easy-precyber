@@ -1,0 +1,176 @@
+$total-cols: map-deep-get($_CONFIG, 'layout', 'cols', 'total');
+$gap: map-deep-get($_CONFIG, 'layout', 'cols', 'gap');
+.container,
+.container-fluid {
+  padding-left: $gap;
+  padding-right: $gap;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+@each $slug, $w, $mw in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      .container {
+        max-width: #{$mw}px;
+      }
+    }
+  }
+} // Filas
+.row {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -$gap;
+  margin-right: -$gap;
+  .no-flexbox & {
+    &:after {
+      content: " ";
+      visibility: hidden;
+      display: block;
+      height: 0;
+      clear: both;
+    }
+  }
+  &.no-gutters-xs {
+    margin-left: 0;
+    margin-right: 0;
+    > [class^="col-"],
+    > .col {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  &.gutters-xs {
+    margin-left: -$gap;
+    margin-right: -$gap;
+    > [class^="col-"],
+    > .col {
+      padding-left: $gap;
+      padding-right: $gap;
+    }
+  }
+  @each $slug, $w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+    @if ($slug != pr){
+      @media (min-width: #{$w}px) {
+      &.no-gutters-#{$slug} {
+        margin-left: 0;
+        margin-right: 0;
+        > [class^="col-"],
+        > .col {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      &.gutters-#{$slug}{
+        margin-left: -$gap;
+        margin-right: -$gap;
+        > [class^="col-"],
+        > .col {
+          padding-left: $gap;
+          padding-right: $gap;
+        }
+      }
+      }
+    }
+  }
+} // Columnas
+[class^="col-"],
+.col {
+  position: relative;
+  padding-left: $gap;
+  padding-right: $gap;
+  float: left;
+}
+
+@for $i from 1 through $total-cols {
+  .col-xs-#{$i},
+  .xs#{$i} {
+    width: percentage($i/$total-cols);
+  }
+}
+.col-xs-auto {
+  width: auto;
+}
+
+@each $slug, $w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      @for $i from 1 through $total-cols {
+        .col-#{$slug}-#{$i},
+        .#{$slug}#{$i} {
+          width: percentage($i/$total-cols);
+        }
+      }
+      .col-#{$slug}-auto {
+        width: auto;
+      }
+    }
+  }
+}
+
+@media print {
+  @for $i from 1 through $total-cols {
+    .col-pr-#{$i} {
+      width: percentage($i/$total-cols);
+    }
+  }
+}
+
+// Mover columnas
+.col-xs-offset-0,
+.offset-xs0 {
+  margin-left: 0;
+}
+
+@for $i from 1 through $total-cols {
+  .col-xs-offset-#{$i},
+  .offset-xs#{$i} {
+    margin-left: percentage($i/$total-cols);
+  }
+}
+
+@each $slug, $w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+  @if ($slug != pr) {
+    @media (min-width: #{$w}px) {
+      .col-#{$slug}-offset-0,
+      .offset-#{$slug}#{0} {
+        margin-left: 0;
+      }
+      @for $i from 1 through $total-cols {
+        .col-#{$slug}-offset-#{$i},
+        .offset-#{$slug}#{$i} {
+          margin-left: percentage($i/$total-cols);
+        }
+      }
+    }
+  }
+}
+
+.no-flexbox {
+  // Columnas
+  [class^="col-"],
+  .col {
+    float: left;
+  } // Cambiar flotación de las columnas
+  .push-xs {
+    float: right;
+  }
+  .pull-xs {
+    float: left;
+  }
+  @each $slug, $w in map-deep-get($_CONFIG, 'layout', 'cols', 'breaks') {
+    @if ($slug != pr) {
+      @media (min-width: #{$w}px) {
+        .push-#{$slug} {
+          float: right;
+        }
+        .pull-#{$slug} {
+          float: left;
+        }
+      }
+    }
+  }
+}

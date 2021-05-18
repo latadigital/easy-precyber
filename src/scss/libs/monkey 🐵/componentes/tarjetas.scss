@@ -1,0 +1,31 @@
+.tarjeta{
+	margin-bottom: 30px;
+	background: $blanco;
+	box-shadow: 0 2px 5px rgba($negro, .3);
+	border-radius: 6px;
+	@include transicion();
+	&:hover{
+		box-shadow: 0 5px 10px rgba($negro, .3);
+	}
+	&__imagen{
+		display: block;
+		height: 200px;
+		overflow: hidden;
+		border-top-left-radius: 6px;
+		border-top-right-radius: 6px;
+		background-position: center center;
+		background-size: cover;
+	}
+	&__img{
+		width: 100%;
+	}
+	&__info{
+		padding: 20px;
+	}
+	&__tags{
+		
+	}
+	&__titulo{
+		font-family: $font-general;
+	}
+}

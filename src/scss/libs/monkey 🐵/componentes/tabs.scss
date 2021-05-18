@@ -1,0 +1,154 @@
+@if map-deep-get($_CONFIG, 'componentes', 'tabs', 'activo') {
+	.fln-tabs {
+		$t: &;
+		margin-bottom: 40px;
+		width: 100%;
+		background: gris(96);
+		&__nav {
+			display: flex;
+			justify-content: space-between;
+			padding: 20px;
+			position: relative;
+			.content &{
+				font-size: 1em;
+				margin: 0;
+			}
+			.no-flexbox &{
+				display: table;
+				width: 100%;
+			}
+		}
+		&__item {
+			display: flex;
+			text-align: center;
+			justify-content: center;
+			font-size: 1.6rem;
+			flex: 1;
+			&:focus {
+				outline: 0;
+			}
+			.content &{
+				padding: 0;
+				&:before{
+					display: none;
+				}
+			}
+			.no-flexbox &{
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+		&__link {
+			padding: 20px 10px;
+			text-decoration: none;
+			display: block;
+			width: 100%;
+			color: getColor('blue-grey', '600');
+			background: transparent;
+			@if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+				border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+			}
+			@if map-deep-get($_CONFIG, 'ui', 'sombras', 'activo') {
+				box-shadow:
+				map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'y')
+				map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'x')
+				map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'blur')
+				map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'spread')
+				rgba($default, map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'default', 'opacity'));
+			}
+			@include transicion;
+			@include hover {
+				&:hover:not(#{$t}__item.activo #{$t}__link) {
+					background: gris(92);
+				}
+			}
+			.content &{
+				&:after{
+					display: none;
+					height: 0;
+					width: 0;
+				}
+			}
+		}
+		&__item {
+			&.activo {
+				#{$t}__link {
+					color: blanco(1);
+					background: $primario;
+					@if map-deep-get($_CONFIG, 'ui', 'sombras', 'activo') {
+						box-shadow:
+						map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'y')
+						map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'x')
+						map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'blur')
+						map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'spread')
+						rgba($default, map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'opacity'));
+					}
+				}
+			}
+		}
+		&__header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 1.6rem;
+			padding: 1.5rem;
+			background: gris(92);
+			margin-bottom: 1px;
+			@if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+				border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+			}
+			&__icono {
+				@include transicion;
+			}
+			&.activo {
+				color: blanco(1);
+				background: $primario;
+				#{$t}__header__icono {
+					transform: rotate(180deg);
+				}
+			}
+		}
+		&__contenido {
+			padding: 3rem;
+			overflow: hidden;
+			@media (max-width: 991px) {
+				padding: 1.5rem;
+			}
+		}
+		@if map-deep-get($_CONFIG, 'componentes', 'tabs', 'tipo', 'vertical') {
+			&--vertical {
+				display: flex;
+				#{$t}__nav{
+					flex-direction: column;
+					width: 30%;
+				}
+				#{$t}__item{
+					flex: auto;
+				}
+				#{$t}__contenidos {
+					width: 70%;
+				}
+			}
+		}
+		@if map-deep-get($_CONFIG, 'componentes', 'tabs', 'tipo', 'responsive') {
+			&--responsive {
+				#{$t}__nav {
+					display: none;
+				}
+				#{$t}__contenidos {
+					width: 100%;
+				}
+			}
+		}
+		.ie-8 & {
+			&__nav {
+				display: table;
+				width: 100%;
+			}
+			&__item {
+				display: table-cell;
+				vertical-align: top;
+			}
+		}
+	}
+}

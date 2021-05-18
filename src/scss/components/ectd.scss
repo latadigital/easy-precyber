@@ -1,0 +1,38 @@
+.ectd {
+  text-align: center;
+  margin-bottom: rem(100px);
+  &__title {
+    margin-top: 0;
+    margin-bottom: rem(20px);
+  }
+  &__desc {
+    margin: 0 auto;
+    max-width: rem(720px);
+    margin-bottom: rem(40px);
+    font-size: rem(18px);
+    font-weight: 300;
+  }
+  &__banner {
+    padding: rem(30px);
+    display: flex;
+    justify-content: center;
+    background: $primario url('//www.easy.cl/minisitios/cyber-nov2018/cyber-fondo.png') center center fixed;
+    &__container {
+      max-width: rem(550px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    &__logo {
+      width: rem(250px);
+      display: block;
+      margin-bottom: rem(20px);
+    }
+    &__desc {
+      color: blanco(1);
+      font-size: rem(18px);
+      font-weight: 300;
+    }
+  }
+}

@@ -1,0 +1,292 @@
+@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'activo') {
+	$t: tabla;
+	.tabla {
+		margin-bottom: 30px;
+		caption {
+			font-size: 2em;
+			padding: 10px;
+		}
+		td,
+		th {
+			font-size: 1.6em;
+			line-height: 1.5;
+			padding: 10px;
+			position: relative;
+		}
+		td {
+			color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'tablas');
+			background: blanco(1);
+			&:empty {
+				background: transparent;
+			}
+		}
+		thead {
+			th {
+				font-weight: normal;
+				color: ennegrecer(map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'inputs'),20%);
+				background: blanquear($primario, 90%);
+			}
+		}
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'full'){
+			&--full {
+				table {
+					width: 100%;
+				}
+			}
+		}
+
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'small'){
+			&--small {
+				caption {
+					font-size: 1.6rem;
+				}
+				td,
+				th {
+					font-size: 1.2rem;
+				}
+			}
+		}
+
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'big'){
+			&--big {
+				caption,
+				td,
+				th {
+					padding: 20px;
+				}
+			}
+		}
+
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'zebra'){
+			&--zebra {
+				tbody {
+					tr {
+						&:nth-of-type(even) {
+							td {
+								background: gris(96);
+							}
+						}
+						&.par {
+							td {
+								background: gris(96);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'bordes', 'activo'){
+			@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'bordes', 'tipo', 'todo'){
+				&--borde {
+					thead {
+						th {
+							border: 1px solid gris(92);
+						}
+					}
+					tbody {
+						td {
+							border: 1px solid gris(92);
+						}
+					}
+					tfoot {
+						td {
+							border: 1px solid gris(92);
+							&:empty {
+								border: 0;
+							}
+						}
+					}
+				}
+			}
+			@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'bordes', 'tipo', 'top'){
+				&--borde-top {
+					thead {
+						th {
+							border-top: 1px solid gris(92);
+						}
+					}
+					tbody {
+						td {
+							border-top: 1px solid gris(92);
+						}
+					}
+				}
+			}
+			@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'bordes', 'tipo', 'bottom') {
+				&--borde-bottom {
+					thead {
+						th {
+							border-bottom: 1px solid gris(92);
+						}
+					}
+					tbody {
+						td {
+							border-bottom: 1px solid gris(92);
+						}
+					}
+				}
+			}
+		}
+
+		// Tabla responsive
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'responsive') {
+			&--responsive {
+				@include break(md-mw) {
+					thead {
+						display: none;
+					}
+					tr,
+					td {
+						display: block;
+					}
+					tr {
+						margin-bottom: 30px;
+					}
+					tbody {
+						td {
+							padding: 10px;
+							&:before {
+								content: attr(data-th);
+								display: block;
+								font-weight: 600;
+								padding: 5px 0;
+								margin-bottom: 5px;
+							}
+						}
+					}
+					tfoot {
+						td {
+							&:empty {
+								display: none;
+							}
+						}
+					}
+					&.#{$t}--zebra {
+						tbody {
+							tr {
+								border-bottom: 0;
+							}
+						}
+					}
+					&.#{$t}--borde {
+						tbody {
+							td {
+								&:before {
+									border-bottom: 0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Tabla paginada
+		@if map-deep-get($_CONFIG, 'componentes', 'tablas', 'tipo', 'pafinada'){
+			&--paginada {
+				table {
+					margin-bottom: 20px;
+					width: 100%;
+				}
+				$p: paginador;
+				.paginador {
+					clear: both;
+					display: flex;
+					justify-content: space-between;
+					flex-wrap: wrap;
+					.no-flexbox & {
+						display: table;
+						width: 100%;
+					}
+					&__item {
+						display: inline-block;
+						vertical-align: middle;
+					}
+					&__flecha {
+						font-size: 2em;
+						color: $negro;
+						cursor: pointer;
+						&.deshabilitado {
+							opacity: 0.2;
+							cursor: not-allowed;
+							pointer-events: none;
+						}
+					}
+					.visibles {
+						padding: 7px 10px;
+						border: 1px solid $grisD;
+						font-size: 1.4em;
+						color: ennegrecer(map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'inputs'),20%);
+						display: inline-block;
+						margin: 0 5px;
+						background: blanco(1);
+					}
+					.total,
+					.texto {
+						font-size: 1.4em;
+						padding: 0 5px;
+					}
+					i {
+						pointer-events: none;
+						&:before {
+							vertical-align: middle;
+						}
+					}
+					&__input {
+						position: relative;
+						.select {
+							appearance: none;
+							-webkit-appearance: none;
+							font-size: 1.4em;
+							padding: 7px 30px 7px 10px;
+							border: 1px solid $grisD;
+							.ie-browser & {
+								padding: 7px 10px;
+							}
+						}
+						i {
+							position: absolute;
+							top: 50%;
+							right: 10px;
+							transform: translateY(-50%);
+							font-size: 2em;
+							.ie-browser & {
+								display: none;
+							}
+						}
+					}
+					@include break(sm-mw) {
+						flex-direction: column;
+						align-items: center;
+						&__nav,
+						&__filas {
+							margin-bottom: 30px;
+						}
+					}
+					.no-flexbox & {
+						&__nav,
+						&__filas {
+							display: table-cell;
+						}
+						&__filas {
+							text-align: right;
+						}
+					}
+					.#{$t}--zebra & {
+						.visibles {
+							background: gris();
+							border-color: gris();
+						}
+						.#{$p}__input {
+							.select {
+								background: gris();
+								border-color: gris();
+							}
+						}
+					}
+				}
+			}
+	}
+	}
+}

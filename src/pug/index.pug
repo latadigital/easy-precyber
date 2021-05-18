@@ -1,0 +1,194 @@
+-
+  const placeholder = (w, h, media) => media ? `@MEDIA_PATH@/${media}` : `https://via.placeholder.com/${w}x${h}`
+  const preguntas = [
+    {
+      id: 1,
+      title: '¿Qué es Cyber Easy?',
+      desc: 'Es el evento más importante de comercio electrónico a nivel nacional, donde encontrarás los mejores descuentos y la mayor variedad de productos para renovar los espacios de tu hogar. Es organizado por la Cámara de Comercio de Santiago.'
+    },
+    {
+      id: 2,
+      title: 'Regístrate o actualiza tus datos para CyberDay',
+      desc: 'Crea tu cuenta en Easy.cl o valida que tus datos personales se encuentren actualizados. De esta manera, podrás guardar tus direcciones de despacho y hacer más fácil tu proceso de compra.',
+      link: {
+        label: 'Regístrate',
+        url: 'https://www.easy.cl/UserRegistrationForm?new=Y&catalogId=10051&myAcctMain=1&langId=-5&storeId=10151'
+      }
+    },
+    {
+      id:3,
+      title:'Compra con segurida en CyberDay',
+      desc: 'Proteger tus datos y garantizar la confidencialidad de tu información personal es nuestra prioridad, es por esto que nuestro sitio Easy.cl utiliza el certificado de seguridad denominado SSL (Secure Socket Layer), el cual garantiza la encriptación de toda tu información y un nivel de seguridad ideal para tus compras en línea.'
+    },
+    {
+      id: 4,
+      title : 'Medios de pago en CyberDay',
+      desc: 'Selecciona el método de pago que más te acomode: Tarjeta Cencosud, Tarjetas de crédito bancarias, RedCompra, cuenta Rut y tarjetas de casas comerciales que sean Visa o Mastercard. Recuerda que no están habilitados los siguientes medios de pago: Gift Card Cencosud y Puntos Cencosud.',
+    },
+    {
+      id: 5,
+      title : '¿Necesitas ayuda para este CyberDay 2021?',
+      desc: 'Si durante el proceso de compra tienes algún inconveniente, ingresa a nuestro Centro de Ayuda o llama a Servicio al cliente al 600 600 3010 para que nuestros ejecutivos puedan orientarte y resolver todas tus dudas.',
+      link: {
+        label: 'Ir al Centro de Ayuda',
+        url: 'https://www.easy.cl/es/cl/easy-chile/ayuda'
+      }
+    },
+    {
+      id: 6,
+      title : 'Cambios y Devoluciones para CyberDay',
+      desc: 'Dirígete a cualquiera de nuestras tiendas o llama directamente a nuestro servicio al cliente al 600 600 3010 y uno de nuestros ejecutivos te ayudará a resolver tus consultas. Tienes 30 días desde la recepción del producto para solicitar tu cambio o devolución de tu dinero.',
+      link: {
+        label: 'Ver más información de cambios y devoluciones',
+        url: 'https://www.easy.cl/es/cl/easy-chile/devoluciones-cambios'
+      }
+    },
+    {
+      id: 7,
+      title : 'Easy cumple tus deseos en este CyberDay',
+      desc: 'El descuento que siempre quisiste para renovar los espacios de tu hogar lo tenemos para ti, hecho a tu medida en Easy.cl',
+      link: {
+        label: 'Ir a Easy.cl',
+        url: 'https://www.easy.cl/'
+      }
+    },
+    {
+      id: 8,
+      title : '¿Cuándo es el Cyber Monday 2021?',
+      desc: 'Si bien no podemos comunicar la fecha hasta que se comunique en la cámara de comercio, se puede mencionar que será pronto y que serán 3 días de duración.'
+    }
+  ]
+
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title CyberDay 2021 - Easy.cl
+    meta(name='description' content='CyberDay 2021 en Easy! Prepárate para este gran evento, suscríbete y conoce las mejores ofertas que tendremos para ti')
+    link(rel='canonical' href='https://www.easy.cl/es/cl/easy-chile/registro-cyber')
+    link(rel='image_src' href='https://easy.cl/es/easy-chile/wcsstore/EasyStorefrontAssetStore/images/easy/logo.png')
+    meta(name='robots' content='index, noodp')
+    <!-- OpenGraph para Facebook -->
+    meta(property='og:locale' content='es_CL')
+    meta(property='og:type' content='article')
+    meta(property='og:title' content='CyberDay 2021 - Easy.cl')
+    meta(property='og:description' content='CyberDay 2021 en Easy! Prepárate para este gran evento, suscríbete y conoce las mejores ofertas que tendremos para ti')
+    meta(property='og:url' content='https://www.easy.cl/es/cl/easy-chile/registro-cyber')
+    meta(property='og:url' content='https://www.easy.cl/es/cl/easy-chile/registro-cyber')
+    meta(property='article:publisher' content='https://www.facebook.com/easychile/')
+    meta(property='article:author' content='https://www.facebook.com/Easy Chile')
+    meta(property='article:section' content='Landing Empresas Cencosud que participan en CyberDay 2021')
+    meta(property='article:published_time' content='2016-09-17T10:32:52+00:00')
+    meta(property='article:modified_time' content='2016-09-17T10:34:40+00:00')
+    meta(property='og:updated_time' content='2016-09-17T10:34:40+00:00')
+    meta(property='og:image' content='https://www.easy.cl/wcsstore/EasyStorefrontAssetStore/images/easy/logo.png' href='https://www.easy.cl/es/cl/easy-chile')
+    meta(property='og:image:width' content='960')
+    meta(property='og:image:height' content='402')
+    meta(property='fb:app_id' content='1468562366694092')
+    <!-- Twitter Card -->
+    meta(property='og:image' content='https://easy.cl/es/easy-chile/wcsstore/EasyStorefrontAssetStore/images/easy/logo.png' href='https://www.easy.cl/es/cl/easy-chile')
+    meta(name='twitter:card' content='summary')
+    meta(name='twitter:description' content='CyberDay 2021 en Easy! Prepárate para este gran evento, suscríbete y conoce las mejores ofertas que tendremos para ti')
+    meta(name='twitter:title' content='CyberDay 2021 - Easy.cl')
+    meta(name='twitter:site' content='@easytienda')
+    meta(name='twitter:image' content='https://www.easy.cl/wcsstore/EasyStorefrontAssetStore/images/easy/logo.png' href='https://www.easy.cl/es/cl/easy-chile')
+    meta(name='twitter:creator' content='@easytienda')
+
+
+
+  body
+
+
+    .registro
+      .container
+        .row.align-middle-xs.justify-center-xs
+          .col-xs-12.col-lg-6.col-xl-5
+            .registro__content.text-align-center-xs
+              h1.registro__title CyberDay 2021 Easy
+              p.registro__desc ¡Prepárate! suscríbete para conocer las mejores ofertas que Easy.cl trae para ti en este Cyber Easy.
+              a.btn.btn--terciario.btn--borde(href="https://www.easy.cl/tienda") Sigue comprando en Easy.cl 
+          .col-xs-12.col-lg-6.col-xl-5
+            form.registro__form.form(autocomplete="off" action="https://docs.google.com/forms/u/1/d/e/1FAIpQLScdFYQVKY6XVClDQpAIPnhptOjNa63LdzaySV_bfZW5Pyi27g/formResponse") 
+              .form__grupo
+                input.text(type="text" id="nombre" name="entry.1437989640" placeholder="Nombre" required)
+              .form__grupo
+                input.text(type="text" id="apellido" name="entry.778237287" placeholder="Apellido" required)
+              .form__grupo(data-comentario="Ingresar RUT sin puntos, solo guion")
+                input.text(type="text" id="rut" name="entry.1770857351" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required)
+              .form__grupo
+                input.text(type="email" id="email" name="entry.968774462" placeholder="Correo" required)
+              .text-align-center-xs
+                .separador 
+                button.btn.btn--primario.btn--invertido Suscríbete
+
+
+    .preguntas
+      .preguntas__container.container
+        each pregunta in preguntas
+          .preguntas__item
+            .preguntas__item__n=pregunta.id 
+            h2.preguntas__item__title=pregunta.title 
+            p.preguntas__item__desc!=pregunta.desc
+            if pregunta.link
+              .separador--small
+              a.link-externo(href=pregunta.link.url)=pregunta.link.label
+
+
+    .ectd
+      .container
+        h3.ectd__title Easy cumple tus deseos 
+        p.ectd__desc El descuento que siempre quisiste para renovar los espacios de tu hogar lo tenemos para tí, hecho a tu medida en Easy.cl
+        .ectd__banner
+          .ectd__banner__container
+            img.ectd__banner__logo(
+              @SRC@=placeholder(400,400, 'ectd-cyber-logo.svg')
+              alt="Easy cumple tus deseos en CyberDay 2021"
+              title="Easy cumple tus deseos en CyberDay 2021"
+            )
+            p.ectd__banner__desc ¡Prepárate para el evento de comercio electrónico más esperdado! Disfruta los mejores descuentos en tus productos favoritos
+
+
+
+    .marcas
+      .container
+        h3.marcas__title Nuestras #[span Marcas]
+        p.marcas__desc Conoce las marcas que forman parte de la gran Familia Cencosud.
+
+        .row
+          .col-xs-12.col-md-6.col-lg-3
+            .marcas__item
+              .marcas__item__image
+                img(@SRC@=placeholder(400,400, 'easy.jpg'), alt="Easy.cl en CyberDay 2021")
+              h4.marcas__item__title Easy.cl
+              p.marcas__item__desc Encuentra todo lo que necesitas para decorar y renovar tu hogar, el mejor lugar del mundo.
+              .separador--small 
+              a.link-externo(href="https://www.easy.cl/")  Ir a Easy.cl
+          .col-xs-12.col-md-6.col-lg-3
+            .marcas__item
+              .marcas__item__image
+                img(@SRC@=placeholder(400,400, 'jumbo.jpg'), alt="Jumbo.cl en CyberDay 2021")
+              h4.marcas__item__title Jumbo.cl
+              p.marcas__item__desc ¡Este #CyberChile se vive en Jumbo.cl! No te pierdas una gran variedad de productos con descuentos increibles.
+              .separador--small 
+              a.link-externo(href="https://www.jumbo.cl/")  Ir a Jumbo.cl
+          .col-xs-12.col-md-6.col-lg-3
+            .marcas__item
+              .marcas__item__image
+                img(@SRC@=placeholder(400,400, 'pariscl.jpg'), alt="Paris.cl en CyberDay 2021")
+              h4.marcas__item__title Paris.cl
+              p.marcas__item__desc Ecuentra productos de calidad, grandes descuentos y las mejores tendencias. Vive #cyberChile en Paris.cl.
+              .separador--small 
+              a.link-externo(href="https://www.paris.cl/")  Ir a Paris.cl
+          .col-xs-12.col-md-6.col-lg-3
+            .marcas__item
+              .marcas__item__image
+                img(@SRC@=placeholder(400,400, 'umbrale.jpg'), alt="Umbrale.cl en CyberDay 2021")
+              h4.marcas__item__title Umbrale.cl
+              p.marcas__item__desc Consigue sofisticados looks visitando Umbrale.cl en #CyberChile. Encuentra originalidad, creatividad y diseño nacional a precios únicos.
+              .separador--small 
+              a.link-externo(href="https://www.umbrale.cl/")  Ir a Umbrale.cl
+
+
+  include includes/footer

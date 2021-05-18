@@ -1,0 +1,790 @@
+@if map-deep-get($_CONFIG, 'componentes', 'formularios', 'activo') {
+  %form-items {
+    width: 100%;
+    border: 1px solid negro(0.1);
+    box-shadow: 0 0 rem(15px) negro(0.05);
+    border-radius: 10px;
+    background: blanco(1);
+    font-size: rem(16px);
+    color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'inputs');
+    padding: rem(12px) rem(15px);
+    resize: none;
+    position: relative;
+    z-index: 1;
+    @include transicion;
+    appearance: none;
+
+    &:focus {
+      outline: 0;
+
+      @if map-deep-get($_CONFIG, 'ui', 'sombras', 'activo') {
+        box-shadow: map-deep-get(
+            $_CONFIG,
+            'ui',
+            'sombras',
+            'tipo',
+            'hover',
+            'x'
+          )
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'y')
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'blur')
+          map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'spread')
+          rgba(
+            $default,
+            map-deep-get($_CONFIG, 'ui', 'sombras', 'tipo', 'hover', 'opacity')
+          );
+      } @else {
+        border-color: gris(70);
+      }
+
+      & ~ {
+        // & label,
+        & .icono {
+          color: $primario;
+        }
+      }
+    }
+
+    &[disabled] {
+      background: gris(96);
+    }
+
+    // &:invalid {
+    // 	border-color: $error;
+    // }
+  }
+
+  %items-seleccion {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: rem(10px);
+
+    input {
+      @supports (appearance: none) {
+        margin-right: 15px;
+        position: relative;
+        @include transicion;
+        cursor: pointer;
+        appearance: none;
+
+        ~ label {
+          width: calc(100% - 28px);
+        }
+
+        &:focus {
+          outline: 0;
+        }
+
+        // &:checked {
+        // 	~label {
+        // 		color: $primario;
+        // 	}
+        // }
+
+        &[disabled] {
+          cursor: default;
+          opacity: 0.6;
+          filter: grayscale(100%);
+
+          ~ label {
+            opacity: 0.6;
+            filter: grayscale(100%);
+          }
+        }
+      }
+    }
+  }
+
+  .form {
+    $f: form;
+    margin-bottom: 40px;
+
+    &__fieldset {
+      border: 0;
+    }
+
+    label {
+      font-size: rem(16px);
+      color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'labels');
+      @include transicion;
+      vertical-align: middle;
+      user-select: none;
+      position: relative;
+
+      &[data-comentario] {
+        &:after {
+          content: attr(data-comentario);
+          color: blanquear(
+            map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'labels'),
+            20%
+          );
+          font-size: rem(14px);
+          padding-left: 5px;
+        }
+      }
+
+      a {
+        font-size: 1em;
+      }
+    }
+
+    &__grupo {
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column-reverse;
+      position: relative;
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'elementos',
+        'text'
+      )
+      {
+        .text {
+          @extend %form-items;
+        }
+      }
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'elementos',
+        'selects'
+      )
+      {
+        select {
+          @extend %form-items;
+        }
+        select {
+          padding-right: 35px;
+
+          &::-ms-expand {
+            display: none;
+          }
+
+          &:-moz-focusring,
+          &:-moz-focus-inner {
+            color: transparent !important;
+            text-shadow: 0 0 0 #000 !important;
+            background-image: none !important;
+            border: 0;
+          }
+        }
+      }
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'elementos',
+        'textarea'
+      )
+      {
+        textarea {
+          @extend %form-items;
+        }
+      }
+
+      &[data-comentario] {
+        &::after {
+          content: attr(data-comentario);
+          color: blanco(1);
+          // text-align: right;
+          font-size: rem(12px);
+          display: block;
+          margin-top: 10px;
+          order: -3;
+        }
+      }
+
+      .icono {
+        display: block;
+        height: 0;
+        align-self: flex-end;
+        pointer-events: none;
+        color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'inputs');
+        margin-right: 10px;
+        transform: translateY(rem(-28px));
+        @include transicion;
+        z-index: 2;
+        font-size: rem(16px);
+        padding: 0 rem(12px);
+        & ~ {
+          .text,
+          select,
+          textarea {
+            padding-right: rem(45px);
+          }
+        }
+      }
+
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'animacion',
+        'activo'
+      )
+      {
+        @if map-deep-get(
+            $_CONFIG,
+            'componentes',
+            'formularios',
+            'animacion',
+            'tipo'
+          ) ==
+          'translate'
+        {
+          &[data-animacion='placeholder'] {
+            margin-bottom: 1.5rem;
+            label {
+              pointer-events: none;
+              display: block;
+              transform: translate(10px, 2em);
+              transform-origin: left top;
+              z-index: 2;
+              opacity: 0.6;
+              line-height: 1;
+
+              &.focus {
+                opacity: 1;
+                transform: translate(0, 0) scale(0.85);
+              }
+            }
+          }
+        } @else if
+          map-deep-get(
+            $_CONFIG,
+            'componentes',
+            'formularios',
+            'animacion',
+            'tipo'
+          ) ==
+          'border-bottom'
+        {
+          &[data-animacion='border-bottom'] {
+            &::before {
+              content: '';
+              display: block;
+              width: 100%;
+              height: 4px;
+              margin-top: -4px;
+              background: $primario;
+              @include transicion;
+              transform: scaleX(0);
+            }
+          }
+        } @else if
+          map-deep-get(
+            $_CONFIG,
+            'componentes',
+            'formularios',
+            'animacion',
+            'tipo'
+          ) ==
+          'scale'
+        {
+          &[data-animacion='scale'] {
+            [type='text'],
+            [type='tel'],
+            [type='email'],
+            textarea {
+              &.activo {
+                transform: scale(1.1);
+              }
+            }
+          }
+        } @else if
+          map-deep-get(
+            $_CONFIG,
+            'componentes',
+            'formularios',
+            'animacion',
+            'tipo'
+          ) ==
+          'label-translate'
+        {
+          &[data-animacion='label-translate'] {
+            align-items: end;
+            label {
+              z-index: 2;
+              &.focus {
+                transform: scale(0.85) translate(10px, calc(50% + 5px));
+                transform-origin: left top;
+                box-shadow: 0 0 0 5px blanco(1);
+                background: blanco(1);
+              }
+            }
+          }
+        }
+      } @else if
+        map-deep-get(
+          $_CONFIG,
+          'componentes',
+          'formularios',
+          'elementos',
+          'small'
+        )
+      {
+        &--small {
+          label {
+            font-size: 1.5rem;
+          }
+          [type='text'],
+          [type='tel'],
+          [type='email'],
+          select,
+          textarea {
+            font-size: 1.5rem;
+            padding: 0.6rem 0.8rem;
+          }
+          .icono {
+            transform: translateY(-2.6rem);
+          }
+          &[data-comentario] {
+            &:after {
+              font-size: 1.3rem;
+            }
+          }
+          &[data-animacion='placeholder'] {
+            label {
+              transform: translate(10px, 1.8em);
+            }
+          }
+        }
+      }
+    }
+
+    @if map-deep-get(
+      $_CONFIG,
+      'componentes',
+      'formularios',
+      'elementos',
+      'seleccion',
+      'activo'
+    )
+    {
+      &__seleccion {
+        margin-bottom: 15px;
+      }
+
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'elementos',
+        'seleccion',
+        'elementos',
+        'radios'
+      )
+      {
+        &__radio {
+          @extend %items-seleccion;
+        }
+        &__radio {
+          $t: &;
+
+          [type='radio'] {
+            opacity: 0;
+            width: 16px;
+            height: 16px;
+            @include posicion(absolute, 0, null, null, 5px);
+            z-index: 2;
+          }
+
+          &__item {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            box-shadow: 0 0 0 1px gris(60);
+            background: blanco(1);
+            border: 3px solid blanco(1);
+            position: relative;
+            margin: 0 5px;
+            &:after {
+              content: '';
+              display: block;
+              @include posicion(absolute, 50%, null, null, 50%);
+              width: 16px;
+              height: 16px;
+              border-radius: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+
+          &--checked {
+            #{$t}__item {
+              background: $primario;
+              box-shadow: 0 0 0 1px $primario;
+              &:after {
+                animation: active-input 400ms ease 1 forwards;
+              }
+            }
+          }
+          &--disabled {
+            filter: grayscale(100);
+            opacity: 0.6;
+          }
+
+          &--inline {
+            display: inline-flex;
+            margin-right: 30px;
+          }
+
+          &--reverse {
+            flex-direction: row-reverse;
+
+            [type='radio'] {
+              margin-right: 0;
+              margin-left: 15px;
+            }
+          }
+        }
+      }
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'elementos',
+        'seleccion',
+        'elementos',
+        'checkboxs'
+      )
+      {
+        &__checkbox {
+          @extend %items-seleccion;
+          $t: &;
+
+          [type='checkbox'] {
+            opacity: 0;
+            width: 18px;
+            height: 18px;
+            margin: 0 5px;
+            @include posicion(absolute, 0, null, null, 0);
+            z-index: 2;
+            &:checked ~ #{$t}__item {
+              // background: $primario;
+              border-color: $secundario;
+
+              &:before {
+                transform: scale(1);
+              }
+
+              &:after {
+                animation: active-input 400ms ease 1 forwards;
+                opacity: 1;
+              }
+            }
+          }
+
+          &__item {
+            border: 2px solid gris(70);
+            width: 18px;
+            height: 18px;
+            background: blanco(1);
+            position: relative;
+            margin: 0 5px;
+
+            @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+              border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor') /
+                1.5;
+            }
+
+            &:before {
+              @include posicion(absolute, -2px, -2px, -2px, -2px);
+              color: blanco(1);
+              transform: scale(0);
+              // transform-origin: left bottom;
+              @include transicion;
+              font-size: 18px;
+              z-index: 1;
+            }
+
+            &:after {
+              content: '';
+              display: block;
+              @include posicion(absolute, 50%, null, null, 50%);
+              width: rem(10px);
+              height: rem(10px);
+              background: rgba($secundario, 0.6);
+              opacity: 0;
+              border-radius: 50%;
+              transform: translate(-50%, -50%);
+              z-index: 0;
+            }
+          }
+
+          &--disabled {
+            filter: grayscale(100);
+            opacity: 0.6;
+          }
+
+          &--inline {
+            display: inline-flex;
+            margin-right: 30px;
+            margin-bottom: 15px;
+          }
+
+          &--reverse {
+            flex-direction: row-reverse;
+            justify-content: space-between;
+
+            [type='checkbox'] {
+              // margin-right: 0;
+              // margin-left: 15px;
+              left: auto;
+              right: 0;
+            }
+          }
+        }
+      }
+      @if map-deep-get(
+        $_CONFIG,
+        'componentes',
+        'formularios',
+        'elementos',
+        'seleccion',
+        'elementos',
+        'toggles'
+      )
+      {
+        &__toggle {
+          @extend %items-seleccion;
+        }
+        &__toggle {
+          $t: &;
+
+          [type='checkbox'] {
+            opacity: 0;
+            width: 35px;
+            height: 30px;
+            @include posicion(absolute, 0, 1rem, null, null);
+            z-index: 2;
+          }
+
+          &__item {
+            width: 30px;
+            height: 10px;
+            background: gris(60);
+            border-radius: 5px;
+            margin: 0 10px;
+            z-index: 0;
+
+            &:before {
+              content: '';
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              border: 1px solid gris(60);
+              background: blanco(1);
+              position: relative;
+              top: -5px;
+              left: -5px;
+              border-radius: 50%;
+              z-index: 0;
+              @include transicion;
+            }
+          }
+
+          &--checked {
+            #{$t}__item {
+              background: $primario;
+
+              &:before {
+                transform: translateX(20px);
+                border-color: $primario;
+                animation: active-input 400ms ease 1 forwards;
+              }
+            }
+          }
+          &--disabled {
+            filter: grayscale(100);
+            opacity: 0.6;
+          }
+          label {
+            width: calc(100% - 50px);
+          }
+        }
+      }
+    }
+  }
+
+  @if map-deep-get(
+    $_CONFIG,
+    'componentes',
+    'formularios',
+    'elementos',
+    'calendario'
+  )
+  {
+    // Calendario Datepicker jQuery UI
+    %dia {
+      display: block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border-radius: 15px;
+      transition: all ease 200ms;
+    }
+
+    .ui-datepicker {
+      z-index: 1000;
+      display: none;
+      float: left;
+      padding: 15px 5px;
+      font-size: 1em;
+      text-align: left;
+      background-color: blanco(1);
+      border: 1px solid $grisE;
+      border-radius: 6px;
+      box-shadow: 0 6px 12px rgba($primario, 0.3);
+
+      @include break(sm) {
+        min-width: 160px;
+        padding: 20px;
+      }
+
+      .ui-datepicker-header {
+        line-height: 30px;
+        margin-bottom: 5px;
+      }
+
+      .ui-datepicker-next,
+      .ui-datepicker-prev {
+        float: right;
+        font-size: 1.6em;
+        display: block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 15px;
+        transition: all ease 200ms;
+        cursor: pointer;
+
+        @include hover {
+          &:hover {
+            background: $primario;
+            color: blanco(1);
+            box-shadow: 0 6px 12px rgba($primario, 0.3);
+          }
+        }
+
+        &:after {
+          display: none;
+        }
+
+        .ui-icon {
+          vertical-align: middle;
+        }
+      }
+
+      .ui-datepicker-prev {
+        float: left;
+      }
+
+      .ui-datepicker-title {
+        text-align: center;
+        text-transform: uppercase;
+        color: $gris3;
+        font-size: 1.4em;
+        font-weight: 600;
+
+        .ui-datepicker-month {
+          margin-right: 5px;
+        }
+
+        select {
+          border: 0;
+          color: $gris3;
+
+          &:focus {
+            outline: 0;
+          }
+        }
+      }
+
+      th {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: $gris3;
+      }
+
+      td,
+      th {
+        text-align: center;
+        font-size: 1.6em;
+      }
+
+      td {
+        padding: 2px;
+
+        @include break(sm) {
+          padding: 5px;
+        }
+
+        .ui-state-default {
+          display: block;
+          width: 32px;
+          height: 32px;
+          line-height: 32px;
+          border-radius: 50%;
+          transition: all ease 200ms;
+
+          &.ui-state-highlight {
+            background: $secundario;
+            color: blanco(1);
+            box-shadow: 0 6px 12px rgba($secundario, 0.3);
+
+            @include hover {
+              &:hover {
+                background: $secundario;
+              }
+            }
+          }
+        }
+
+        a {
+          color: $primario;
+          text-decoration: none;
+
+          &.ui-state-active {
+            background: $primario;
+            color: blanco(1);
+            box-shadow: 0 6px 12px rgba($primario, 0.3);
+
+            @include hover {
+              &:hover {
+                background: $primario;
+              }
+            }
+          }
+
+          @include hover {
+            &:hover {
+              background: $grisE;
+            }
+          }
+
+          &:after {
+            display: none;
+          }
+        }
+
+        &.ui-datepicker-unselectable {
+          color: gris;
+        }
+      }
+
+      .ui-datepicker-buttonpane {
+        text-align: right;
+        padding-top: 15px;
+
+        button {
+          display: none;
+        }
+      }
+    }
+  }
+}

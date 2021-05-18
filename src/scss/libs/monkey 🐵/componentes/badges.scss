@@ -1,0 +1,61 @@
+@if map-deep-get($_CONFIG, 'componentes', 'badges', 'activo'){
+  %badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: rem(14px);
+    background: blanquear($default,80%);
+    white-space: nowrap;
+    user-select: none;
+    margin-bottom: 5px;
+    color: $default;
+    @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+      border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+    }
+  }
+  .badge {
+    @extend %badge;
+    &[href] {
+      text-decoration: none;
+      @include transicion;
+      @include hover {
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    @if map-deep-get($_CONFIG, 'componentes', 'badges', 'tipo', ''){
+      &--pill{
+        @if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+          border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor') * 2;
+        }
+      }
+    }
+    $tags: (
+      primario $primario,
+      secundario $secundario,
+      terciario $terciario,
+      peligro $error,
+      exito $exito,
+      aviso $aviso,
+      info $info
+    );
+    @each $slug, $color in $tags {
+      &--#{$slug} {
+  
+        @if(luminance($color) > 0.5) {
+          color: ennegrecer($color,20%);
+        } @else {
+          color: $color;
+        }
+        background: #{blanquear($color, 80%)};
+        &[href] {
+          @include hover {
+            &:hover {
+              background: #{blanquear($color, 70%)};
+            }
+          }
+        }
+      }
+    }
+  }
+}

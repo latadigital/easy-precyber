@@ -1,0 +1,222 @@
+@if map-deep-get($_CONFIG, 'componentes', 'alertas', 'activo') {
+	
+	$alertas: ();
+
+	@each $alerta, $color in map-deep-get($_CONFIG, 'ui', 'colores', 'alertas') {
+		$_alerta : ($alerta: $color);
+		$alertas: map-merge($alertas, $_alerta );
+	}
+
+	.alerta {
+		$t : &;
+		position: relative;
+		padding: rem(30px);
+		font-size: rem(16px);
+		margin: rem(30px) 0;
+		font-weight: 400;
+		color: gris(32);
+		background: rgba(gris(96),.85);
+		display: flex;
+		width: 100%;
+		animation: alerta 600ms ease 1 forwards;
+		@if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+      border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+		}
+		& > :first-child {
+			margin-top: 0;
+		}
+		& > :last-child {
+			margin-bottom: 0;
+		}
+		&--xsmall {
+			font-size: rem(13px);
+			padding: rem(15px);
+		}
+		&--small {
+			// font-size: rem(13px);
+			padding: rem(20px);
+			margin: rem(10px) 0;
+		}
+		&--xsmall {
+			// font-size: rem(12px);
+			padding: rem(10px);
+			margin: rem(5px) 0;
+		}
+		&--hc {
+			background: rgba(gris(18),.85);
+			color: blanco(1);
+		}
+		&--close {
+			padding-right: rem(40px);
+		}
+		&__content {
+			display: flex;
+			align-items: center;
+			margin: 0 rem(-15px);
+		}
+		&__icon {
+			margin: 0 rem(15px);
+			font-size: rem(30px);
+			line-height: .75;
+			&:before{
+				line-height: 1;
+			}
+		}
+		&__text {
+			margin: 0 rem(10px);
+		}
+		& > :first-child {
+			margin-top: 0;
+		}
+		& > :last-child {
+			margin-bottom: 0;
+		}
+		@each $alerta, $color in $alertas {
+			// @debug #{blanquear($color, 90%)};
+			&--#{$alerta} {
+				// @debug $color;
+				background: blanquear($color, 80%);
+				color: map-deep-get($_CONFIG, 'componentes', 'alertas', 'texto');
+				&#{$t}--hc {
+					background: #{$color};
+					color: blanco(1);
+				}
+			}
+		}
+
+		&__contenedor {
+			@include posicion(fixed, null, rem(15px), null, rem(15px));
+			z-index: 99999;
+			#{$t} {
+				&--hidden {
+					opacity: 0;
+				}
+			}
+
+			&--fixed-top {
+				top: 0;
+				#{$t}--hidden {
+					transform: translateY(-20px);
+				}
+			}
+	
+			&--fixed-bottom {
+				bottom: 0;
+				#{$t}--hidden {
+					transform: translateY(20px);
+				}
+			}
+		}
+
+		&--fixed-top,
+		&--fixed-bottom {
+			@include posicion(fixed, null, rem(15px), null, rem(15px));
+			z-index: 99999;
+		}
+
+		&--fixed-top {
+			top: 0;
+			#{$t}--hidden {
+				transform: translateY(-20px);
+			}
+		}
+
+		&--fixed-bottom {
+			bottom: 0;
+			#{$t}--hidden {
+				transform: translateY(20px);
+			}
+		}
+
+		&--global {
+			padding: 30px;
+			margin: rem(15px) 0;
+			@include transicion;
+		}
+
+
+		&__titulo {
+			font-size: rem(24px);
+			display: block;
+			margin-bottom: 5px;
+			font-weight: normal;
+		}
+
+		&__texto {
+			@include break(md-mw) {
+				text-align: center;
+			}
+		}
+
+		&__contenido {
+			display: flex;
+			align-items: center;
+			padding-right: rem(15px);
+
+			@include break(md-mw) {
+				flex-direction: column;
+				padding-right: 0;
+			}
+		}
+
+		&__close {
+			cursor: pointer;
+			font-size: rem(15px);
+			display: inline-block;
+			line-height: rem(15px);
+			@include transicion;
+			@include posicion(absolute, rem(10px), rem(10px), null, null);
+			&:before {
+				vertical-align: middle;
+			}
+			@include hover {
+				&:hover {
+					transform: rotate(90deg);
+					transform-origin: center;
+				}
+			}
+
+			&:before {
+				display: block;
+			}
+		}
+
+		a:not(.btn) {
+			font-size: 1em;
+			color: inherit;
+			text-decoration: underline;
+
+			&:after {
+				display: none;
+			}
+		}
+
+		@if map-deep-get($_CONFIG, 'componentes', 'tabs', 'tipo', 'navegador'){
+			@include posicion(fixed, null, 10%, 30px, 10%);
+			padding: 15px;
+			background: blanco(1);
+			border: 1px solid $grisD;
+			z-index: 9999;
+			display: none;
+			&__titulo{
+				margin-bottom: .25em;
+			}
+			&__parrafo{
+				margin-bottom: 0
+			}
+			.no-flexbox &{
+				display: block;
+			}
+		}
+
+	}
+}
+
+@keyframes alerta {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

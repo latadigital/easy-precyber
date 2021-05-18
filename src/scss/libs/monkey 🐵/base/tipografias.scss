@@ -1,0 +1,314 @@
+/* Títulos */
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	font-family: $font-titulos, sans-serif;
+	color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'titulos');
+	font-weight: 400;
+	margin-top: rem(30px);
+	margin-bottom: rem(30px);
+	line-height: 1.25;
+}
+
+$base-font-size: rem(16px);
+$heading-scale: 0.5;
+
+@for $i from 1 through 6 {
+	h#{$i},
+	.h#{$i} {
+		font-size: $base-font-size + $heading-scale * (6 - $i);
+		@include break (md-mw){
+			$heading-scale-r: 0.3;
+			font-size: $base-font-size + $heading-scale-r * (6 - $i);
+		}
+		@if $i == 1 {
+			&.titulo-hero {
+				font-size: $base-font-size + $heading-scale * (10 - $i);
+				@include break (md-mw){
+					$heading-scale-r: 0.3;
+					font-size: $base-font-size + $heading-scale-r * (10 - $i);
+				}
+			}
+		}
+  }
+}
+
+a {
+	color: inherit;
+}
+
+p {
+	font-size: rem(16px);
+	color: $color-parrafos;
+	line-height: 1.5;
+	font-weight: 400;
+	small {
+		color: lighten($color-parrafos, 10%);
+	}
+}
+
+blockquote {
+	font-size: rem(20px);
+	font-style: italic;
+	color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'blockquote');
+	font-weight: 300;
+	padding: rem(15px);
+	border-left: 2px solid gris(94);
+	display: flex;
+	flex-direction: column;
+	p {
+		color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'blockquote');
+		font-weight: inherit;
+	}
+	small {
+		align-self: flex-end;
+		&:before {
+			content: '- ';
+		}
+	}
+}
+
+ul, ol, dl{
+	list-style-type: none;
+}
+
+.content ul,
+.lista-desordenada,
+.content ol,
+.lista-ordenada,
+.content dl,
+.lista-definicion {
+	font-size: rem();
+	color: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'listas');
+	li {
+		line-height: 1.5;
+		padding-bottom: rem(15px);
+		padding-left: rem(25px);
+		position: relative;
+		// display: flex;
+		ul, ol{
+			margin-bottom: 0;
+		}
+		>ul , >ol, >dl{
+			padding-top: rem(20px);
+		}
+	}
+	ol,
+	ul,
+	dl {
+		//font-size: 1em;
+		margin-left: rem(30px);
+		@media (max-width: 767px){
+			margin-left: 0;
+		}
+	}
+}
+
+.content ul,
+.lista-desordenada {
+	li {
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 0;
+			top: calc(.8rem - 7px / 2);
+			width: rem(7px);
+			height: rem(7px);
+			border: 1px solid map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'bullets-listas');
+			@if map-deep-get($_CONFIG, 'ui', 'radios', 'activo') {
+				border-radius: map-deep-get($_CONFIG, 'ui', 'radios', 'valor');
+			}
+			background: map-deep-get($_CONFIG, 'ui', 'colores', 'textos', 'bullets-listas');
+			margin-right: rem(10px);
+		}
+		li {
+			&:before {
+				background: transparent;
+			}
+		}
+	}
+}
+
+.lista-items {
+	display: flex;
+	margin-left: -1.5rem;
+	margin-right: -1.5rem;
+	li {
+		margin-left: 1.5rem;
+		margin-right: 1.5rem;
+		margin-bottom: 3rem;
+		font-size: 1.6rem;
+		color: gris(30);
+	}
+}
+
+.content ol,
+.lista-ordenada {
+	counter-reset: item;
+	li {
+		padding-left: rem(25px);
+		&:before {
+			position: absolute;
+			left: 0;
+			content: counter(item) ". ";
+			counter-increment: item;
+			color: $primario;
+		}
+	}
+	ol{
+		padding-top: rem(10px);
+		li:before{
+			content: counter(item, lower-latin) ". ";
+		}
+		ol{
+			li:before{
+				content: counter(item, lower-roman) ". ";
+			}
+		}
+	}
+}
+
+.content dl,
+lista-definicion {
+	dt {
+		font-weight: 500;
+		&:after {
+			content: ':';
+		}
+	}
+	dd {
+		padding-left: rem(10px);
+		margin-bottom: rem(10px);
+	}
+}
+
+.content {
+	p,
+	blockquote,
+	ul,
+	ol,
+	dl {
+		margin-bottom: rem(30px);
+		// a, .link-externo{
+		// 	font-size: 1em;
+		// }
+	}
+	// a{
+	// 	text-decoration: none;
+	// 	color: $primario;
+	// 	&:hover{
+	// 		text-decoration: underline;
+	// 	}
+	// }
+}
+.link-externo {
+	font-size: rem(16px);
+	color: $primario;
+	text-decoration: none;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	@if map-deep-get($_CONFIG, 'ui', 'links', 'activo') {
+		@if map-deep-get($_CONFIG, 'ui', 'links', 'tipo', 'underline'){
+			&:after {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: $primario;
+				transform: scaleX(0);
+				transform-origin: map-deep-get($_CONFIG, 'ui', 'links', 'direction');
+				@include transicion;
+			}
+			&:focus {
+				outline: 0;
+				&:after {
+					transform: scaleX(.5)
+				}
+			}
+			&:hover {
+				text-decoration: none;
+				&:after {
+					transform: scaleX(1)
+				}
+			}
+		} @else if map-deep-get($_CONFIG, 'ui', 'links', 'tipo', 'overline') {
+			&:before {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: $primario;
+				transform: scaleX(0);
+				transform-origin: map-deep-get($_CONFIG, 'ui', 'links', 'direction');
+				@include transicion;
+			}
+			&:focus {
+				outline: 0;
+				&:before {
+					transform: scale(.5)
+				}
+			}
+			&:hover {
+				text-decoration: none;
+				&:before {
+					transform: scale(1)
+				}
+			}
+		} @else if map-deep-get($_CONFIG, 'ui', 'links', 'tipo', 'fill') {
+			&:before {
+				content: '';
+				display: block;
+				height: 100%;
+				@include posicion(absolute,-2px,-2px,-2px,-2px);
+				background: rgba($primario,.1);
+				transform: scaleX(0);
+				transform-origin: map-deep-get($_CONFIG, 'ui', 'links', 'direction');
+				@include transicion;
+			}
+			&:focus {
+				outline: 0;
+				&:before {
+					transform: scaleX(.5)
+				}
+			}
+			&:hover {
+				text-decoration: none;
+				&:before {
+					transform: scaleX(1)
+				}
+			}
+		} @else if map-deep-get($_CONFIG, 'ui', 'links', 'tipo', 'scale') {
+			overflow: hidden;
+			vertical-align: bottom;
+			&:before {
+				content: '';
+				display: block;
+				width: 4px;
+				height: 4px;
+				@include posicion(absolute,50%,null,null,50%);
+				background: rgba($primario,.1);
+				border-radius: 50%;
+				transform: translate(-50%, 50%) scale(0);
+				@include transicion(all, ease, 400ms);
+			}
+			&:hover {
+				text-decoration: none;
+				&:before {
+					transform: translate(-50%, 50%) scale(100)
+				}
+			}
+		}	
+	}
+}
