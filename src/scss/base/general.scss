@@ -1,6 +1,6 @@
 .modal {
-  @include posicion(fixed,0,0,0,0);
-  background: negro(.8);
+  @include posicion(fixed, 0, 0, 0, 0);
+  background: negro(0.8);
   z-index: 999;
   display: flex;
   justify-content: center;
@@ -24,11 +24,27 @@
     }
   }
   &__cerrar {
-    @include posicion(absolute,0,0,null,null);
+    @include posicion(absolute, 0, 0, null, null);
     color: $primario;
     text-decoration: none;
     padding: rem(10px);
-    opacity: .6;
+    opacity: 0.6;
     font-weight: bold;
   }
+}
+
+#contentWrapper {
+  max-width: none;
+}
+#content {
+  overflow: auto;
+}
+
+#cartDropdown,
+.rowContainer,
+.rowContainer > .row,
+.rowContainer > .row.margin-true,
+.row.margin-true > div > div:last-of-type {
+  padding: 0 !important;
+  margin: 0 !important;
 }

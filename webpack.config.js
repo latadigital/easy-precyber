@@ -9,7 +9,7 @@ const HTMLInlineCSSWebpackPlugin = require('html-inline-css-webpack-plugin').def
 const devMode = process.argv[process.argv.indexOf('--mode') + 1] === 'development';
 
 const MEDIA_PATH = !devMode ? '//media.easy.cl/is/image/EasySA' : `/assets`;
-const FILE_TYPE = !devMode ? '' : '.png';
+const FILE_TYPE = !devMode ? '' : '.jpg';
 
 const HTML = {
   test: /.pug$/,
