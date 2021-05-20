@@ -4834,6 +4834,52 @@
         width: calc(100% - 50px)
       }
 
+      .modal {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, .8);
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        visibility: hidden;
+        padding: .625rem
+      }
+
+      .modal:target {
+        visibility: visible
+      }
+
+      .modal__container {
+        position: relative;
+        padding: 1.875rem;
+        background: #fff;
+        border-radius: 10px
+      }
+
+      .modal__container h4 {
+        margin: 0;
+        margin-bottom: .625rem
+      }
+
+      .modal__container p {
+        margin-bottom: 20px
+      }
+
+      .modal__cerrar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        color: #bc3037;
+        text-decoration: none;
+        padding: .625rem;
+        opacity: .6;
+        font-weight: bold
+      }
+
       .registro {
         background: #bc3037 url("//www.easy.cl/minisitios/cyber-nov2018/cyber-fondo.png") center center fixed;
         min-height: 540px;
@@ -5269,16 +5315,20 @@
               <p class="registro__desc">¡Prepárate! suscríbete para conocer las mejores ofertas que Easy.cl trae para ti en este Cyber Easy.</p><a class="btn btn--terciario btn--borde" href="https://www.easy.cl/tienda">Sigue comprando en Easy.cl</a>
             </div>
           </div>
-          <div class="col-xs-12 col-lg-6 col-xl-5">
-            <form class="registro__form form" autocomplete="off" action="https://docs.google.com/forms/u/1/d/e/1FAIpQLScdFYQVKY6XVClDQpAIPnhptOjNa63LdzaySV_bfZW5Pyi27g/formResponse">
-              <div class="form__grupo"><input class="text" id="nombre" name="entry.1437989640" placeholder="Nombre" required></div>
-              <div class="form__grupo"><input class="text" id="apellido" name="entry.778237287" placeholder="Apellido" required></div>
-              <div class="form__grupo" data-comentario="Ingresar RUT sin puntos, solo guion"><input class="text" id="rut" name="entry.1770857351" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required></div>
-              <div class="form__grupo"><input class="text" type="email" id="email" name="entry.968774462" placeholder="Correo" required></div>
+          <div class="col-xs-12 col-lg-6 col-xl-5"><iframe name="hidden_iframe" id="hidden_iframe" style="display:none" onload='submitted&&(window.location="#popup_registro")'></iframe>
+            <form class="registro__form form" autocomplete="off" action="https://docs.google.com/forms/d/e/1FAIpQLScUBSifdhWssKulPRK8-t9rPtmTs355nlcmrfA9fIBssYzzOA/formResponse" target="hidden_iframe" onsubmit="submitted=!0">
+              <div class="form__grupo"><input class="text" type="email" id="email" name="entry.219370137" placeholder="Correo" required></div>
+              <div class="form__grupo" data-comentario="Ingresar RUT sin puntos, solo guion"><input class="text" id="rut" name="entry.1141389676" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required></div>
               <div class="text-align-center-xs">
                 <div class="separador"></div><button class="btn btn--primario btn--invertido">Suscríbete</button>
               </div>
             </form>
+            <div class="modal" id="popup_registro">
+              <div class="modal__container text-align-center-xs">
+                <h4>Muchas Gracias por suscribirte</h4>
+                <p>sigue comprando en</p><a class="btn btn--primario" href="https://www.easy.cl/tienda/">Easy.cl</a> <a class="modal__cerrar" href="/">x</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

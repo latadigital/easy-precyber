@@ -110,18 +110,23 @@ html(lang="es")
               p.registro__desc ¡Prepárate! suscríbete para conocer las mejores ofertas que Easy.cl trae para ti en este Cyber Easy.
               a.btn.btn--terciario.btn--borde(href="https://www.easy.cl/tienda") Sigue comprando en Easy.cl 
           .col-xs-12.col-lg-6.col-xl-5
-            form.registro__form.form(autocomplete="off" action="https://docs.google.com/forms/u/1/d/e/1FAIpQLScdFYQVKY6XVClDQpAIPnhptOjNa63LdzaySV_bfZW5Pyi27g/formResponse") 
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='#popup_registro';}"></iframe>
+            form.registro__form.form(autocomplete="off" action="https://docs.google.com/forms/d/e/1FAIpQLScUBSifdhWssKulPRK8-t9rPtmTs355nlcmrfA9fIBssYzzOA/formResponse" target="hidden_iframe" onsubmit="submitted=true") 
               .form__grupo
-                input.text(type="text" id="nombre" name="entry.1437989640" placeholder="Nombre" required)
-              .form__grupo
-                input.text(type="text" id="apellido" name="entry.778237287" placeholder="Apellido" required)
+                input.text(type="email" id="email" name="entry.219370137" placeholder="Correo" required)
               .form__grupo(data-comentario="Ingresar RUT sin puntos, solo guion")
-                input.text(type="text" id="rut" name="entry.1770857351" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required)
-              .form__grupo
-                input.text(type="email" id="email" name="entry.968774462" placeholder="Correo" required)
+                input.text(type="text" id="rut" name="entry.1141389676" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required)
               .text-align-center-xs
                 .separador 
                 button.btn.btn--primario.btn--invertido Suscríbete
+            <div class="modal" id="popup_registro">   
+              <div class="modal__container text-align-center-xs">
+                <h4>Muchas Gracias por suscribirte </h4>
+                <p>sigue comprando en </p>
+                <a class="btn btn--primario" href="https://www.easy.cl/tienda/">Easy.cl</a>
+                <a class="modal__cerrar" href="/">x</a>
+              </div>
+            </div>
 
 
     .preguntas

@@ -1,0 +1,34 @@
+.modal {
+  @include posicion(fixed,0,0,0,0);
+  background: negro(.8);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  padding: rem(10px);
+  &:target {
+    visibility: visible;
+  }
+  &__container {
+    position: relative;
+    padding: rem(30px);
+    background: blanco(1);
+    border-radius: 10px;
+    h4 {
+      margin: 0;
+      margin-bottom: rem(10px);
+    }
+    p {
+      margin-bottom: 20px;
+    }
+  }
+  &__cerrar {
+    @include posicion(absolute,0,0,null,null);
+    color: $primario;
+    text-decoration: none;
+    padding: rem(10px);
+    opacity: .6;
+    font-weight: bold;
+  }
+}
