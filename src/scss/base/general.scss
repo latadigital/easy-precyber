@@ -48,3 +48,32 @@
   padding: 0 !important;
   margin: 0 !important;
 }
+
+.game {
+  display: none;
+  width: 100%;
+  @include posicion(fixed,0,0,0,0);
+  background: negro(.8);
+  &:target {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+  }
+  &__item {
+    aspect-ratio: 5/6;
+    max-width: 500px;
+    width: 100%;
+  }
+  &__cerrar {
+    text-decoration: none;
+    @include posicion(absolute,0,0,null,null);
+    font-size: 30px;
+    color: blanco(1);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

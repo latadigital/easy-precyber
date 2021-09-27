@@ -5068,9 +5068,9 @@
             </div>
           </div>
           <div class="col-xs-12 col-lg-6 col-xl-5"><iframe name="hidden_iframe" id="hidden_iframe" style="display:none" onload='submitted&&(window.location="#popup_registro")'></iframe>
-            <form class="registro__form form" autocomplete="off" action="https://docs.google.com/forms/d/e/1FAIpQLScUBSifdhWssKulPRK8-t9rPtmTs355nlcmrfA9fIBssYzzOA/formResponse" target="hidden_iframe" onsubmit="submitted=!0">
-              <div class="form__grupo"><input class="text" type="email" id="email" name="entry.219370137" placeholder="Correo" required></div>
-              <div class="form__grupo" data-comentario="Ingresar RUT sin puntos, solo guion"><input class="text" id="rut" name="entry.1141389676" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required></div>
+            <form class="registro__form form" autocomplete="off" action="https://docs.google.com/forms/d/e/1FAIpQLScUBSifdhWssKulPRK8-t9rPtmTs355nlcmrfA9fIBssYzzOA/formResponse" target="hidden_iframe" onsubmit="submitted=!0" id="bootstrapForm" method="POST">
+              <div class="form__grupo"><input id="emailAddress" type="email" name="emailAddress" class="form-control text" required></div>
+              <div class="form__grupo" data-comentario="Ingresar RUT sin puntos ni guion"><input id="1141389676" name="entry.1141389676" class="form-control text" pattern="^[0-9]+[0-9kK]{1}" required></div><input type="hidden" name="fvv" value="1"> <input type="hidden" name="fbzx" value="-7375158733439207401"> <input type="hidden" name="pageHistory" value="0">
               <div class="text-align-center-xs">
                 <div class="separador"></div><button class="btn btn--primario btn--invertido">Suscríbete</button>
               </div>

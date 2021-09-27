@@ -62,9 +62,9 @@
 doctype html
 html(lang="es")
   head
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
   //-   meta(charset="UTF-8")
   //-   meta(http-equiv="X-UA-Compatible" content="IE=edge")
-  //-   meta(name="viewport" content="width=device-width, initial-scale=1.0")
   //-   title CyberDay 2021 - Easy.cl
   //-   meta(name='description' content='CyberDay 2021 en Easy! Prepárate para este gran evento, suscríbete y conoce las mejores ofertas que tendremos para ti')
   //-   link(rel='canonical' href='https://www.easy.cl/es/cl/easy-chile/registro-cyber')
@@ -108,14 +108,34 @@ html(lang="es")
             .registro__content.text-align-center-xs
               h1.registro__title CyberDay 2021 Easy
               p.registro__desc ¡Prepárate! suscríbete para conocer las mejores ofertas que Easy.cl trae para ti en este Cyber Easy.
-              a.btn.btn--terciario.btn--borde(href="https://www.easy.cl/tienda") Sigue comprando en Easy.cl 
+              
+              .btn__grupo
+                a.btn.btn--terciario.btn--borde(href="https://www.easy.cl/tienda") Sigue comprando en Easy.cl 
+                a.btn.btn--terciario.btn--borde(href="#pacman") Jugar a Pacman
           .col-xs-12.col-lg-6.col-xl-5
             <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location='#popup_registro';}"></iframe>
-            form.registro__form.form(autocomplete="off" action="https://docs.google.com/forms/d/e/1FAIpQLScUBSifdhWssKulPRK8-t9rPtmTs355nlcmrfA9fIBssYzzOA/formResponse" target="hidden_iframe" onsubmit="submitted=true") 
+            form.registro__form.form(
+              autocomplete="off"
+              action="https://docs.google.com/forms/d/e/1FAIpQLScUBSifdhWssKulPRK8-t9rPtmTs355nlcmrfA9fIBssYzzOA/formResponse"
+              target="hidden_iframe"
+              onsubmit="submitted=true"
+              id="bootstrapForm"
+              method="POST"
+              )
+              // Field type: "short" id: "688665564"
               .form__grupo
-                input.text(type="email" id="email" name="entry.219370137" placeholder="Correo" required)
-              .form__grupo(data-comentario="Ingresar RUT sin puntos, solo guion")
-                input.text(type="text" id="rut" name="entry.1141389676" placeholder="RUT" pattern="^[0-9]+[-|‐]{1}[0-9kK]{1}" required)
+                <input id="emailAddress" type="email" name="emailAddress" class="form-control text" required>
+              .form__grupo(data-comentario="Ingresar RUT sin puntos ni guion")
+                <input id="1141389676" type="text" name="entry.1141389676" class="form-control text" pattern="^[0-9]+[0-9kK]{1}"  required>
+              <input type="hidden" name="fvv" value="1">
+              <input type="hidden" name="fbzx" value="-7375158733439207401">
+              <input type="hidden" name="pageHistory" value="0">
+              //
+                CAVEAT: In multipages (multisection) forms, *pageHistory* field tells to google what sections we've currently completed.
+                This usually starts as "0" for the first page, then "0,1" in the second page... up to "0,1,2..N" in n-th page.
+                Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
+                We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
+              
               .text-align-center-xs
                 .separador 
                 button.btn.btn--primario.btn--invertido Suscríbete
@@ -195,5 +215,10 @@ html(lang="es")
           //-     .separador--small 
           //-     a.link-externo(href="https://www.umbrale.cl/")  Ir a Umbrale.cl
 
+
+  .game#pacman
+    a(href="#").game__cerrar X
+    .game__item
+      embed(src="http://127.0.0.1:5500/", type="" style="width: 100%; height: 100%")
 
   //- include includes/footer
